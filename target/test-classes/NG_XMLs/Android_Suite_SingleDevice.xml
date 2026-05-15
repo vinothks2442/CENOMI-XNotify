@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" thread-count="2" parallel="tests">
+	<test name="Android native app test on Android 13">
+		<parameter name="platform" value="Android" />
+		<parameter name="udid" value="RZCX314XC4F" />
+		<parameter name="systemPort" value="4723" />
+		<parameter name="deviceName" value="Samsung A55" />
+		<classes>
+			<class name="com.Gypsee.bdd.common.runner.MobileRunner" />
+		</classes>
+	</test>
+</suite> <!--
+Suite -->

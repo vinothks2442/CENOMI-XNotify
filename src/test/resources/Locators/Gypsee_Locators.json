@@ -1,0 +1,763 @@
+{
+
+  "Gypsee2": {
+  "HomePage_Title" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[1]"  
+	},
+  
+  
+    "HomePage_shareOption" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.ImageView[@index=1])[1]"
+	     
+	},
+	 "HomePage_HomeMenu" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[2]"
+	     
+	},
+	 "HomePage_CarHealth" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[3]"
+	     
+	}, "HomePage_FleetDoctor" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[4]"
+	     
+	}, "HomePage_CarScan" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[5]"
+	     
+	}, "HomePage_carScanLiveDemo" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[7]"
+	     
+	}, "HomePage_RTOVehicleInfo" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[10]"
+	     
+	}, "HomePage_HowToConnectWithCar" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[6]"
+	     
+	},
+	"HomePage_EmerjencyContact" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[10]"},
+	   
+	"HomePage_AddDevice" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=1])[1]"},
+	   
+	   "HomePage_Dashboard" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=1])[2]"},
+	   
+	"HomePage_Trips" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=2]"},
+	   
+	   "Gypsee_BackButton" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageButton[@index=0]"},
+	   
+	   "Gypsee_BackButton_carhealth" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.ImageView[@index=1])[2]"},
+	   
+	
+	"Gypsee_AddDevicePlusSymbol" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.ImageView[@index=0])[11]"},
+	   
+	"Gypsee_smartCharger" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[1]"},
+	   
+	"Gypsee_smartCarCharger" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=2]"},
+	   
+	"Gypsee_clickOBD" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[2]"},
+	   
+	"Gypsee_OBD2BLE" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=2]"},
+	   
+	"Gypsee_stereoDevice" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[3]"},
+	
+	   "Gypsee_carStereoDevice" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=2]"},
+	   "Gypsee_customD" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[4]"},
+	    "Gypsee_customDevices" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=2]"},
+	
+	  "Gypsee_addDeviceNextOne" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=3]"},
+	   
+	   "Gypsee_addDeviceClickMybluetooth" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[3]"},
+	   
+	    "Gypsee_addDeviceAlertCancel" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[2]"},
+	   
+	   "Gypsee_addDeviceAlertOk" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=2]"},
+	   
+	   "Gypsee_enterCustomDeviceInfo" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.EditText[@index=2]"},
+	   
+	    "Gypsee_Trip_FirstDrive_click" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.ImageView[@index=0])[4]"},
+	   
+	    "Gypsee_Trip_SecondDrive_click" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.ImageView[@index=0])[5]"},
+	   
+	    "Gypsee_Trip_ThirdDrive_click" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.ImageView[@index=0])[6]"},
+	   
+	    "Gypsee_Trip_sharefeedbak" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=1]"},
+	   
+	   "Gypsee_Trip_sharefeedbak_cancel" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[2]"},
+	   
+	  "Gypsee_Trip_sharefeedbak_submit" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=2]"},
+	   
+	  "Gypsee_Trip_sharefeedbakValidate" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.CheckedTextView[@index=0]"},
+	   "Gypsee_Home_VehMaintaRemainder" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@text='Vehicle Maintenance Reminder']"},
+	  
+	   "Gypsee_MyVeh_PlusSymbol" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=1]"},
+	   "Gypsee_Enter_RegNumber" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.EditText[@index=2]"},
+	   "Gypsee_AddDevice_Submit" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=2]"},
+	
+	   "Gypsee_AddDevice_Cancel" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.TextView[@index=0])[2]"},
+	    "Gypsee_ScanYourcarhealthNow" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=3]"},
+	    "Gypsee_SeriviceReminder" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.EditText[@index=1])[1]"},
+	   
+	 "Gypsee_enterServiceDueDate" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.EditText[@index=1])[2]"},
+	 "Gypsee_odometerReadingFC" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "(//android.widget.EditText[@index=1])[3]"},
+	   
+	    "Gypsee_odometerReadingdate" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@text='15']"},
+	   "Gypsee_odometerReadingdateOK" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=1]"},
+	
+	 "Gypsee_UpdateRTOInfo" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.TextView[@index=3]"}
+	
+	
+	
+	  
+	  
+	   
+	   
+	
+	   
+
+},
+
+
+
+  "Gypsee3": {
+        "MenuIcon": {
+			"locatorType": "Xpath",
+			"locatorValue": "(//android.widget.ImageView[@index=2])[1]"
+		},
+		 "myVehiclesText": {
+			"locatorType": "Xpath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='My Vehicles']"
+		},
+		"plusIcon": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/rightSideIcon"
+		},
+		"registrationNumber": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/registration_no_et"
+		},
+		"submit": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/positioveBtn"
+		},
+		"errorMsg": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/errorTxt"
+		},
+		"cancel": {
+			"locatorType": "Xpath",
+			"locatorValue": "(//android.widget.TextView[@index=0])[2]"
+		},
+		"vehicleDetails123": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/carConnectedImage"
+		},
+		"serviceRemainder": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/service_reminder"
+		},
+		"updateProfileValidation": {
+			"locatorType": "Xpath",
+			"locatorValue": "//android.widget.TextView[@text='Update vehicle details']"
+		},
+		"dueDate": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/service_due_date"
+		},
+		"odometerReading": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/odomter"
+		},
+		"updateButton": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/update"
+		},
+		"HomeScreen": {
+			"locatorType": "Xpath",
+			"locatorValue": "//android.widget.TextView[@resource-id='in.gypsee.customer:id/homeTv']"
+
+		},
+		"cancelButton": {
+			"locatorType": "id",
+			"locatorValue": "android:id/button2"
+
+		},
+		"okayButton": {
+			"locatorType": "Xpath",
+			"locatorValue": "//android.widget.Button[@resource-id='android:id/button1']"
+
+		},
+	    "serviceRemaindererror": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/service_reminder"
+		}
+		
+		},
+	"Gypsee": {
+		"Connect": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/introDescription"
+		},
+		"Connect_txt": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Connect']"
+		},
+		"Skip_Btn": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/skip_button"
+		},
+		"EnterMobileNotxt": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Please enter your mobile number to drive safe']"
+		},
+		"Enter_MobileNO": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/loginMobileNumber"
+		},
+		"RightArrow": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/rightImage"
+		},
+		"OtpHdr": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/ndescriptionTv"
+		},
+		"OTP": {
+			"locatorType": "Xpath",
+			"locatorValue": "//android.widget.EditText[@index=2]"
+		},
+		"ChooseAnAccount": {
+			"locatorType": "id",
+			"locatorValue": "com.google.android.gms:id/main_title"
+		},
+		"NotificationApp": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Notifications on the App Permission']"
+		},
+		"Confirm_Btn": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/confirmBtn"
+		},
+		"WhileUsingApp": {
+			"locatorType": "id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+		},
+		"Allow": {
+			"locatorType": "id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_allow_button"
+		},
+		"WHILEUSINGTHEAPP_btn": {
+			"locatorType": "id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+		},
+		"Agree": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.Button[@text='AGREE']"
+		},
+		"Aceeptt": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.Button[@text='ACCEPT']"
+		},
+		"Deny": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.Button[@text='DENY']"
+		},
+		
+		"GypseeApp": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Gypsee']"
+		},
+		"Radio_Btn": {
+			"locatorType": "id",
+			"locatorValue": "android:id/switch_widget"
+		}, 
+		"NavigateBack": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.ImageView[@content-desc='Back']"
+		},
+		"BatterySaver": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.CheckedTextView[@index=1])[2]"
+		},
+		"home": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/homeTv"
+		},
+		"SafetyCenter": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Safety Center']"
+		},
+		"AddMembers": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Add Members']"
+		},
+		"AddMemberText": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='Add Member'])[1]"
+		},
+		"AddName": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Name']"
+		},
+		"AddCity": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='City']"
+		},
+		"AddMobileNo": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Mobile number']"
+		},
+		"AddEmailID": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Email ID']"
+		},
+		"Realtion_DpDn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Relation']"
+		},
+		"Realtion_friend": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Friend']"
+		},
+		"AddMemberBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='Add Member'])[2]"
+		},
+		"Members": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Members']"
+		},
+		"VaidateMember": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='Testing (Friend)'])"
+		},
+		"Accident": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Accident']"
+		},
+		"PrefeeredSerAssit": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Preferred service assistance']"
+		},
+		"RoadRage": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Road Rage']"
+		},
+		"VehicleBreakDown": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Vehicle Breakdown']"
+		},
+		"ConfirmationAlertHdr": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Confirmation']"
+		},
+		"Ok": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='OK']"
+		},
+		"Cancel": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Cancel']"
+		},
+		"ReadyAssit": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='ReadyAssist']"
+		},
+		"Howitworks": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='How it Works']"
+		},
+		"EmergencyDir": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Emergency Directory']"
+		},
+		"EmerSer": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Emergency Services']"
+		},
+		"Howdoseitwor": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='How does it Works?']"
+		},
+		"Step1": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Step 1: Emergency situation']"
+		},
+		"Step2": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Step 2: Press SOS']"
+		},
+		"Step3": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Step 3: Shared Location with Type of Emergency']"
+		},
+		"EmerCon": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Emergency Contact']"
+		},
+		"backBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.ImageView[@index=0]"
+		},
+		"errorTxt": {
+			"locatorType": "Id",
+			"locatorValue": "in.gypsee.customer:id/errorText"
+		},
+		"CancelBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Cancel']"
+		},
+		"car": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/brandname"
+		}
+		
+	},
+	"Gypsee00": {
+		
+		"Connect": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/introDescription"
+		},
+		"Connect_txt": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Pair drive safe app with Bluetooth of your car stereo.']"
+		},
+		"Skip_Btn": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/skip_button"
+		},
+		"EnterMobileNotxt": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Please enter your mobile number to drive safe']"
+		},
+		"Enter_MobileNO": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/loginMobileNumber"
+		},
+		"RightArrow": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/rightImage"
+		},
+		"NotificationApp": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Notifications on the App Permission']"
+		},
+		"Confirm_Btn": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/confirmBtn"
+		},
+		"WhileUsingApp": {
+			"locatorType": "id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+		},
+		"Allow": {
+			"locatorType": "id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_allow_button"
+		},
+		"WHILEUSINGTHEAPP_btn": {
+			"locatorType": "id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_allow_foreground_only_button"
+		},
+		"Agree": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.Button[@text='ACCEPT']"
+		},
+		"Deny": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.Button[@text='DENY']"
+		},
+		"GypseeApp": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Gypsee']"
+		},
+		"Radio_Btn": {
+			"locatorType": "id",
+			"locatorValue": "android:id/switch_widget"
+		}, 
+		"NavigateBack": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.ImageButton[@content-desc='Back']"
+		},
+		"Dashboard": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView)[1]"
+		},
+		"SafetyCenter": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Safety Center']"
+		},
+		"AddMembers": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Add Members']"
+		},
+		"AddMemberText": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='Add Member'])[1]"
+		},
+		"AddName": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Name']"
+		},
+		"AddCity": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='City']"
+		},
+		"AddMobileNo": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Mobile number']"
+		},
+		"AddEmailID": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Email ID']"
+		},
+		"Realtion_DpDn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Relation']"
+		},
+		"Realtion_friend": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Friend']"
+		},
+		"AddMemberBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='Add Member'])[2]"
+		},
+		"Members": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Members']"
+		},
+		"VaidateMember": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='Testing (Friend)'])"
+		},
+		"MenuBtn": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/menu_btn"
+		},
+		"VfyUserEmail": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='luckysukant9@gmail.com']"
+		},
+		"VfyUserName": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='LS GAMING']"
+		},
+		"MyVehicles": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='My Vehicles']"
+		},
+		"vfyVehicles": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView[@text='undefined SELTOS D1.5 6MT HTX'])[1]"
+		},
+		"NavigateBackArrow": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.ImageButton"
+		},
+		"SubscribeNow": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Subscribe Now']"
+		},
+		"VfyDriveSafe": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/descriptionTV"
+		},
+		"VfySubscribe": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Drive Safe Subscription']"
+		},
+		"EnterSubscription": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Enter Subscription Code']"
+		},
+		"SubscribeNowBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Subscribe Now']"
+		},
+		"ReferralCode": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Referral Code']"
+		},
+		"ReferralCodevfy": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/descriptionTV"
+		},
+		"EnterReferralCode": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Referral code']"
+		},
+		"CancelBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Cancel']"
+		},
+		"SubmitBtn": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Submit']"
+		},
+		
+		"ChannelPromoCode": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Channel Promo Code']"
+		},
+		"VfyChannelPromoCode": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/descriptionTV"
+		},
+		"EnterChannelPromoCode": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.EditText[@text='Enter Channel Promocode']"
+		},
+		"PartnerLogin": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Partner Login']"
+		},
+		"VfyPartnerLogin": {
+			"locatorType": "id",
+			"locatorValue": "com.android.chrome:id/url_bar"
+		},
+		"ShareFeedback": {
+			"locatorType": "XPath",
+
+			"locatorValue": "//android.widget.CheckedTextView[@text='Share Feedback']"
+		},
+		"VfyShareFeedback": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/titleTv"
+		},
+		"TechnicalSupport": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Technical Support']"
+		},
+		"VfyTechnicalSupport": {
+			"locatorType": "XPath",
+			"locatorValue": "(//android.widget.TextView)[1]"
+		},
+		"TechSuppNo": {
+			"locatorType": "id",
+			"locatorValue": "in.gypsee.customer:id/negativeBtn"
+		},
+		"Settings": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Settings']"
+		},
+		"QuickManual": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.CheckedTextView[@text='Quick Manual']"
+		},
+		
+	
+
+			"locatorValue": "//android.widget.ImageView[@index=0]"
+		},
+		"OnlyThisTime": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.Button[@text='ONLY THIS TIME']"
+		},
+		"DontAllow": {
+			"locatorType": "Id",
+			"locatorValue": "com.android.permissioncontroller:id/permission_deny_button"
+		},
+		"PermissionErr": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Permission Request!']"
+		},
+		"InvalidErr": {
+			"locatorType": "XPath",
+			"locatorValue": "//android.widget.TextView[@text='Please enter valid inputs']"
+		}
+		
+	}
+
+}
+
+		
+		
+		
+
+		
+		

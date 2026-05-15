@@ -1,0 +1,157 @@
+{
+
+  "FuelShine1": {
+  "HomePage_Title" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@content-desc='Fuelshine']"  
+	},
+	"InvalidMobileNumber" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.EditText[@index=9]"  
+	},
+	"VerifyButton" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@content-desc='Verify']"  
+	},
+	"VerifyErrorMsg" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@content-desc='Mobile no should not be greater than or less than 10']"
+
+	},
+	"OtpNumber" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.EditText[@index=6]"
+
+	},
+	"DoneButton" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@content-desc='Done']"
+
+	},
+	"ConfirmButton" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@content-desc='Confirm']"
+
+	},
+	"NotificationAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@text='Allow']"
+
+	},
+	"DeviceLocationAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@text='While using the app']"
+
+	},
+	"NearByDeviceAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@text='Allow']"
+
+	},
+	"LocationPermissionRadioButton" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.RadioButton[@text='Allow all the time']"
+
+	},
+	"PhysicalActivityAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@text='Allow']"
+
+	},
+	"ValidateHomePage" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@content-desc='General Rules']"
+
+	},
+	"NotificationDontAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=1]"
+
+	},
+	"DeviceLocationDontAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=2]"
+
+	},
+	"NearByDeviceDontAllow" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=1]"
+
+	}
+	},
+ "FuelShine2": {
+  "HomePage_Performnace" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=3]"  
+	},
+	
+  "HomePage_MyVallet" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.view.View[@index=4])[2]"  
+	},
+	 
+  "HomePage_Settings" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.view.View[@index=5])[2]"  },
+	   
+	   "HomePage_Settings_Myvehicle" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.view.View[@index=2])[1]"  },
+	   
+	   "HomePage_Settings_AlertConfig" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.view.View[@index=4])[1]"  },
+	   
+	   "HomePage_Settings_backButton" : {
+       "locatorType": "Xpath",
+	   "locatorValue": "(//android.view.View[@index=0])[6]"  },
+	   "MyVehicle_InvalidNumber" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.EditText[@index=1]"  },
+	    "MyVehicle_Add" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.view.View[@index=2]"  },
+	   
+	    "MyVehicle_AddButton" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=1]"  },
+	   
+	    "MyVallet_Duration" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.ImageView[@index=2]"  },
+	   
+	   "MyVallet_Today" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=0]"  },
+	   
+	    "MyVallet_ForteenDays" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=1]"  },
+	   
+	   "MyVallet_TwentyEightdays" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=2]"  },
+	   
+	   "MyVallet_ThreeMonths" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=3]"  },
+	   
+	   "MyVallet_SixMonths" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=4]"  },
+	    "MyVallet_OneYear" :{
+	   "locatorType": "Xpath",
+	   "locatorValue": "//android.widget.Button[@index=5]"  }
+	  
+	  
+	   
+	  
+	   
+	   
+	   
+	   
+	   
+
+	
+}
+	}

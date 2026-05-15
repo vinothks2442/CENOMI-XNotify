@@ -1,0 +1,5 @@
+file:src/test/java/com/Gypsee/bdd/api/features/9.%20Gypsee_Start_Trip.feature:8:56:57:58:59:60:82:83:84:85:86:87:88:89
+file:src/test/java/com/Gypsee/bdd/api/features/8.%20Gypsee_Get_Registered_Device.feature:8
+file:src/test/java/com/Gypsee/bdd/api/features/4.%20Gypsee_Get_Driving_Alerts_By_TripID.feature:5
+file:src/test/java/com/Gypsee/bdd/api/features/3.%20Gypsee_Get_Trip_By_UserID.feature:5
+file:src/test/java/com/Gypsee/bdd/api/features/1.%20Gypsee_Post_Get_Otp%201.feature:145
