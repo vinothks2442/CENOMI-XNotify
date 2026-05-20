@@ -22,9 +22,9 @@ public class CampaignBuilderSteps {
         campaign.clickCreateCampaign();
     }
 
-    @When("user enters campaign name as {string}")
-    public void enterCampaignName(String campaignName) {
-        campaign.enterCampaignName(campaignName);
+    @When("user enters campaign name")
+    public void enterCampaignName() {
+        campaign.enterCampaignName();
     }
 
     @When("user enters campaign description as {string}")
