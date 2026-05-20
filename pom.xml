@@ -2,11 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.SnickR</groupId>
-	<artifactId>BrainSight_Web_Mobile_API_BDD_Framework</artifactId>
+	<groupId>com.cenomi.xnotify</groupId>
+	<artifactId>Cenomi_XNotify_Web_Mobile_API_BDD_Framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 		<properties>
-        <project.name>BrainSight_Web_Mobile_API_BDD_Framework</project.name>
+        <project.name>Cenomi_XNotify_Web_Mobile_API_BDD_Framework</project.name>
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

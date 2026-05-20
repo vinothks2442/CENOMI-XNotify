@@ -4,7 +4,7 @@
 	<test name="Web">
 	<!--<parameter name="browser" value="chrome" /> -->
 		<classes>
-			<class name="com.Gypsee.bdd.common.runner.Playground"></class>
+			<class name="com.xnotify.bdd.common.runner.Playground"></class>
 		</classes>
 	</test>
 </suite> <!-- Suite -->
