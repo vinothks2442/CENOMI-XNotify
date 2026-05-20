@@ -1,12 +1,21 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 29.996 sec <<< FAILURE! - in TestSuite
-tearDownClass(com.Gypsee.bdd.common.runner.MobileRunner)  Time elapsed: 28.895 sec  <<< FAILURE!
-java.lang.RuntimeException: java.net.ConnectException: Connection timed out: connect
-	at com.Gypsee.bdd.common.runner.MobileRunner.tearDownClass(MobileRunner.java:52)
-Caused by: java.net.ConnectException: Connection timed out: connect
-	at com.Gypsee.bdd.common.runner.MobileRunner.tearDownClass(MobileRunner.java:52)
-Caused by: java.net.ConnectException: Connection timed out: connect
-	at com.Gypsee.bdd.common.runner.MobileRunner.tearDownClass(MobileRunner.java:52)
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 53.385 sec <<< FAILURE! - in TestSuite
+scenario(com.xnotify.bdd.common.runner.Playground)  Time elapsed: 48.494 sec  <<< FAILURE!
+com.microsoft.playwright.TimeoutError: 
+Error {
+  message='Timeout 10000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 10000ms exceeded.
+    at ProgressController.run (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\progress.js:87:26)
+    at Frame.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\frames.js:619:23)
+    at FrameDispatcher.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\frameDispatcher.js:106:103)
+    at FrameDispatcher._handleCommand (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:362:39)
+}
+Call log:
+- waiting for locator("//div[contains(text(),'successfully')]") to be visible
+
+	at com.xnotify.bdd.common.runner.Playground.scenario(Playground.java:39)
 

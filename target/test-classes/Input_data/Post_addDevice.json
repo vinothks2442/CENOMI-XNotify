@@ -1,0 +1,10 @@
+{ 
+    "bluetoothName": "Headset", 
+"bluetoothProfilesSupported": "Yes",
+ "bluetoothType": "Headset", 
+ "deviceId": "3", 
+ "deviceName": "Bluetooth Headset", 
+ "lastConnectedTime": "2024-03-30 05:30:14", 
+ "macAddress": "F0:F8:63:7C:FB:9F", 
+ "nowConnected": true}
+ 

@@ -1,0 +1,1142 @@
+package com.xnotify.bdd.ccl;
+
+import static org.testng.Assert.assertEquals;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Paths;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.jruby.RubyProcess.Sys;
+
+import com.xnotify.bdd.integrations.report_utils.ReportManager;
+import com.xnotify.bdd.integrations.common_utils.BrowserFactory;
+import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.WaitForSelectorState;
+
+import junit.framework.Assert;
+
+public class PlayActions {
+
+	// =========================
+	// 🔥 MULTI-ROLE SUPPORT (NEW)
+	// =========================
+	private static ThreadLocal<String> currentRole = new ThreadLocal<>();
+
+	// ============================================OG Browser Context and page
+	// create methods==========================================
+	private BrowserContext context() {
+		return BrowserFactory.getInstance().getBrowserContext();
+	}
+
+	private Page page() {
+		return BrowserFactory.getInstance().getPage();
+	}
+
+	// ======================================================================================
+
+	public void setRole(String role) {
+		currentRole.set(role.toLowerCase());
+	}
+
+	public void clearRole() {
+		currentRole.remove();
+	}
+
+	/*
+	 * public void runAs(String role, Runnable actions) {
+	 * 
+	 * if (BrowserFactory.getInstance().getPage(role) == null) {
+	 * throw new RuntimeException("❌ Role not initialized: " + role);
+	 * }
+	 * 
+	 * try {
+	 * setRole(role);
+	 * System.out.println("🔄 Executing actions as ROLE: " + role);
+	 * 
+	 * actions.run();
+	 * 
+	 * } finally {
+	 * clearRole();
+	 * }
+	 * }
+	 */
+
+	// =========================
+	// 🔥 UPDATED PAGE RESOLUTION
+	// =========================
+	/*
+	 * private BrowserContext context() {
+	 * if (currentRole.get() != null) {
+	 * BrowserContext ctx = BrowserFactory.getInstance()
+	 * .getPage(currentRole.get()).context();
+	 * if (ctx != null)
+	 * return ctx;
+	 * }
+	 * return BrowserFactory.getInstance().getBrowserContext();
+	 * }
+	 */
+
+	/*
+	 * private Page page() {
+	 * 
+	 * if (currentRole.get() != null) {
+	 * Page rolePage = BrowserFactory.getInstance().getPage(currentRole.get());
+	 * if (rolePage != null) {
+	 * return rolePage;
+	 * }
+	 * }
+	 * 
+	 * return BrowserFactory.getInstance().getPage();
+	 * }
+	 */
+
+	// // 🔥 NEW: Role support
+	// private static ThreadLocal<String> currentRole = new ThreadLocal<>();
+
+	// public void setRole(String role) {
+	// currentRole.set(role);
+	// }
+
+	// private Page page() {
+	// if (currentRole.get() != null) {
+	// Page rolePage = BrowserFactory.getInstance().getPage(currentRole.get());
+	// if (rolePage != null) {
+	// return rolePage;
+	// }
+	// }
+	// return BrowserFactory.getInstance().getPage();
+	// }
+
+	// public void runAs(String role, Runnable actions) {
+	// if (BrowserFactory.getInstance().getPage(role) == null) {
+	// throw new RuntimeException("Role not initialized: " + role);
+	// }
+	// setRole(role);
+	// actions.run();
+	// }
+
+	// private BrowserContext context() {
+	// return page().context();
+	// }
+
+	public void navigate(String URL) {
+		page().navigate(URL);
+		String ActualURL = page().url();
+		System.out.println("Actual URL - " + ActualURL);
+		System.out.println("Expected URL - " + URL);
+		ReportManager.logInfo("Actual URL - " + ActualURL);
+		ReportManager.logInfo("Expected URL - " + URL);
+	}
+
+	public void click(String locator, String info) {
+		page().click(locator);
+		System.out.println("Successfully clicked on  -  " + info);
+		ReportManager.logInfo("Successfully clicked on  -  " + info);
+	}
+
+	public String innerHTML(String locator) {
+		try {
+			return page().innerHTML(locator);
+		} catch (Exception e) {
+			throw new RuntimeException("Unable to get innerHTML for locator: " + locator);
+		}
+	}
+
+	public void fill(String locator, String value, String info) {
+		page().fill(locator, value);
+		System.out.println("Successfully entered value -  " + value + " in " + info + " box");
+		ReportManager.logInfo("Successfully entered value -  " + value + " in " + info + " box");
+	}
+
+	public void enterTextUsingJS(String locator, String value, String info) {
+
+		page().evaluate(
+				"(data) => { " +
+						"const el = document.querySelector(data.locator); " +
+						"if (!el) throw new Error('Element not found'); " +
+						"el.value = data.value; " +
+						"el.dispatchEvent(new Event('input', { bubbles: true })); " +
+						"el.dispatchEvent(new Event('change', { bubbles: true })); " +
+						"}",
+				Map.of("locator", locator, "value", value));
+
+		System.out.println("Entered value using JS - " + value + " in " + info);
+	}
+
+	public void type(String locator, String value, String info) {
+		page().type(locator, value);
+		System.out.println("Successfully entered value -  " + value + " in " + info + " box");
+		ReportManager.logInfo("Successfully entered value -  " + value + " in " + info + " box");
+	}
+
+	public void clickInsideFrame(String frameLocator, String elementLocator, String info) {
+		Locator locator = page().frameLocator(frameLocator).locator(elementLocator);
+		locator.click();
+		System.out.println("Successfully clicked on  -  " + info);
+		ReportManager.logInfo("Successfully clicked on  -  " + info);
+	}
+
+	/**
+	 * In Playwright, there's no need to explicitly use a method to switch back from
+	 * a frame to the default content. The platform automatically handles the
+	 * content switching, excluding nested frames. This automatic switching applies
+	 * specifically to methods such as clickInsideFrame, isVisibleInsideFrame,
+	 * getTextInsideFrame, and sendKeysInsideFrame. <br>
+	 * 
+	 * @param frameLocator
+	 * @param elementLocator
+	 * @param info
+	 * @return boolean
+	 */
+	public int allTextContentsSelectDrpdwnCount(String selectorDrpDwn) {
+		Locator selectElement = page().locator(selectorDrpDwn); // Example using ID
+		int optionCount = selectElement.locator("option").count();
+		System.out.println("Number of options: " + optionCount);
+		return optionCount;
+	}
+
+	public List fetchMultipleElementText(String locator) {
+		List<String> roles = page()
+				.locator(locator)
+				.allTextContents();
+
+		System.out.println("Approver Roles List" + roles);
+
+		return roles;
+	}
+
+	public List allTextContentsSelectDrpdwn(String selectorDrpDwn) {
+		Locator selectElement = page().locator(selectorDrpDwn); // Example using I
+		// Get the labels of each option
+		List<String> optionLabels = selectElement.locator("option").allInnerTexts();
+		System.out.println("Option labels: " + optionLabels);
+		return optionLabels;
+	}
+
+	public void selectOptionFromDropdown(String locator, String value) throws InterruptedException {
+		Thread.sleep(4000);
+		Locator options = page().locator(locator);
+		int count = options.count();
+		System.out.println("Total options: " + count);
+
+		for (int i = 0; i < count; i++) {
+			String text = options.nth(i).innerText();
+			System.out.println("Text: " + text);
+
+			if (text != null && text.trim().equalsIgnoreCase(value)) {
+				options.nth(i).click();
+				return;
+			}
+		}
+
+		throw new RuntimeException("Option not found: " + value);
+	}
+
+	public void waitForSelector(String locator, double timeout, String info) {
+		page().waitForSelector(locator, new Page.WaitForSelectorOptions().setTimeout(timeout));
+		System.out.println("Successfully waited for selector -  " + info);
+		ReportManager.logInfo("Successfully waited for selector -  " + info);
+	}
+
+	public boolean isVisibleInsideFrame(String frameLocator, String elementLocator, String info) {
+		Locator locator = page().frameLocator(frameLocator).locator(elementLocator);
+		boolean isPresent = locator.isVisible();
+		if (isPresent == true) {
+			System.out.println("Successfully element is displayed  -  " + info);
+			ReportManager.logInfo("Successfully element is displayed  -  " + info);
+		} else {
+			ReportManager.logInfo("element not displayed: " + info);
+			System.out.println("element not displayed: " + info);
+
+		}
+		return isPresent;
+	}
+
+	public String getTextInsideFrame(String frameLocator, String elementLocator, String info) {
+		Locator locator = page().frameLocator(frameLocator).locator(elementLocator);
+		String text = locator.textContent();
+		System.out.println("Text is -  " + text);
+		ReportManager.logInfo("Text is -  " + text);
+		return text;
+	}
+
+	public void fillInsideFrame(String frameLocator, String elementLocator, String value, String info) {
+		Locator locator = page().frameLocator(frameLocator).locator(elementLocator);
+		locator.fill(value);
+		System.out.println("Successfully entered value -  " + value + " in " + info + " box");
+		ReportManager.logInfo("Successfully entered value -  " + value + " in " + info + " box");
+	}
+
+	public void typeInsideFrame(String frameLocator, String elementLocator, String value, String info) {
+		Locator locator = page().frameLocator(frameLocator).locator(elementLocator);
+		locator.type(value);
+		System.out.println("Successfully entered value -  " + value + " in " + info + " box");
+		ReportManager.logInfo("Successfully entered value -  " + value + " in " + info + " box");
+	}
+
+	Frame frame;
+
+	/*
+	 * This method returns a Frame, and here's how you can utilize it:
+	 * 
+	 * <p>
+	 * **Usage**
+	 *
+	 * <pre>{@code
+	 * Locator locator = play.switchToFrame(frameLocator,
+	 * info).locator(elementInsideFrame);
+	 * import Locator from com.microsoft.playwright package;
+	 * locator.click(); // This will click on an element inside a frame.
+	 * }</pre>
+	 * 
+	 * <pre>{@code
+	 * List<Frame> childFrames = play.switchToFrame(frameLocator,
+	 * info).childFrames();
+	 * Frame secondChildFrame = childFrames.get(1);
+	 * secondChildFrame.locator(elemtInsideSecondFrame).click(); // Click on an
+	 * element inside the second childFrame.
+	 * }</pre>
+	 * 
+	 * <pre>
+	 * {@code // If you need to switch back to the parent frame, use this:
+	 * Frame parentFrame = secondChildFrame.parentFrame();
+	 * Using the parentFrame reference, you can enhance your automation in nested
+	 * frames.
+	 * }</pre>
+	 * 
+	 * <p>
+	 * These examples illustrate how to use the provided method for handling frames
+	 * in a nested structure using Playwright.
+	 * 
+	 * @param frameLocator
+	 * 
+	 * @param info
+	 * 
+	 * @return
+	 */
+	public Frame switchToFrame(String frameLocator, String info) {
+		frame = page().frame(frameLocator);
+		ReportManager.logInfo("Successfully switched to frame -  " + info);
+		System.out.println("Successfully switched to frame -  " + info);
+		return frame;
+	}
+
+	public void switchToDefaultPage(String info) {
+		// No explicit "switch back" is required in Playwright; keep for backward
+		// compatibility.
+		ReportManager.logInfo("Successfully switched to default page -  " + info);
+		System.out.println("Successfully switched to default page -  " + info);
+	}
+
+	/*
+	 * public void loginWithMicrosoft(String emailTextbox,
+	 * String nextButton,
+	 * String sendCodeButton,
+	 * String otpTextbox,
+	 * String verifyButton) throws Exception {
+	 * 
+	 * page().fill(emailTextbox, ConfigReader.getValue("adminEmail"));
+	 * page().click(nextButton);
+	 * page().click(sendCodeButton);
+	 * 
+	 * page().waitForSelector(otpTextbox);
+	 * 
+	 * String otp = EmailOTPReader.getOTP(
+	 * ConfigReader.getValue("adminEmail"),
+	 * ConfigReader.getValue("emailPassword"));
+	 * 
+	 * System.out.println("Fetched OTP : " + otp);
+	 * ReportManager.logInfo("Fetched OTP from email");
+	 * 
+	 * // Handle 6 OTP input boxes
+	 * for (int i = 0; i < otp.length(); i++) {
+	 * 
+	 * String indexedOtpLocator = "(" + otpTextbox + ")[" + (i + 1) + "]";
+	 * 
+	 * page().fill(indexedOtpLocator, String.valueOf(otp.charAt(i)));
+	 * }
+	 * 
+	 * page().click(verifyButton);
+	 * }
+	 */
+
+	public String textContent(String locator) {
+		String Text = page().textContent(locator);
+		System.out.println("Text is -  " + Text);
+		ReportManager.logInfo("Text is -  " + Text);
+		return Text;
+	}
+
+	public void draganddrop(String source, String target) {
+		page().dragAndDrop(source, target);
+		System.out.println("Successfully dragged from " + source + " to " + target);
+		ReportManager.logInfo("Successfully dragged from " + source + " to " + target);
+	}
+
+	public void check(String locator, String info) {
+		page().check(locator);
+		System.out.println("Successfully checked -  " + locator + " in " + info + " box");
+		ReportManager.logInfo("Successfully checked -  " + locator + " in " + info + " box");
+
+	}
+
+	public String getContent() {
+		String content = page().content();
+		System.out.println("The HTML page content is " + content);
+		ReportManager.logInfo("The HTML page content is " + content);
+		return content;
+	}
+
+	public void verifyText(String actualText, String expectedText) {
+		ReportManager.logInfo("Actual Text - " + actualText);
+		ReportManager.logInfo("Expected Text - " + expectedText);
+		System.out.println("Actual Text - " + actualText);
+		System.out.println("Expected Text - " + expectedText);
+		assertEquals(actualText, expectedText);
+	}
+
+	public void verifyIntValues(int actualValue, int expectedValue) {
+		ReportManager.logInfo("Actual Value - " + actualValue);
+		ReportManager.logInfo("Expected Value - " + expectedValue);
+		System.out.println("Actual Value - " + actualValue);
+		System.out.println("Expected Value - " + expectedValue);
+		assertEquals(actualValue, expectedValue);
+	}
+
+	public String getAttributeValue(String locator, String name) {
+
+		String attributeText = page().getAttribute(locator, name);
+		ReportManager.logInfo("Successfully get attribute text - " + attributeText);
+		System.out.println("Successfully get attribute text - " + attributeText);
+		return attributeText;
+	}
+
+	public void isClickable(String Elelocator, String info) {
+		Locator locator = page().locator(Elelocator);
+
+		// Check if the element is visible and enabled
+		boolean isVisible = locator.isVisible();
+		boolean isEnabled = locator.isEnabled();
+		boolean isClickable = isVisible && isEnabled;
+
+		if (isClickable) {
+			System.out.println("The element is clickable.");
+		} else {
+			Assert.assertEquals(true, false);
+		}
+		ReportManager.logInfo("The element is clickable  -  " + info);
+	}
+
+	public void doubleClick(String locator, String info) {
+		page().dblclick(locator);
+		System.out.println("Successfully double clicked on  -  " + info);
+		ReportManager.logInfo("Successfully double clicked on  -  " + info);
+	}
+
+	public void backButton(String locator, String info) {
+		page().goBack();
+		System.out.println("Successfully clicked on Back Button");
+		ReportManager.logInfo("Successfully clicked on Back Button");
+	}
+
+	public void nextPage(String locator, String info) {
+		page().goForward();
+		System.out.println("Successfully clicked on Forward Button");
+		ReportManager.logInfo("Successfully clicked on Forward Button");
+	}
+
+	public void mouseHover(String locator, String info) {
+		page().hover(locator);
+		System.out.println("Successfully mouse hoverd on  -  " + info);
+		ReportManager.logInfo("Successfully mouse hoverd on  -  " + info);
+	}
+
+	public boolean isChecked(String locator, String info) {
+
+		boolean isChecked = page().isChecked(locator);
+		if (isChecked == true) {
+			System.out.println("Successfully element is checked  -  " + info);
+			ReportManager.logInfo("Successfully element is checked  -  " + info);
+		} else {
+			ReportManager.logInfo("element not checked: " + info);
+			System.out.println("element not is checked: " + info);
+
+		}
+		return isChecked;
+	}
+
+	public boolean isDisabled(String locator, String info) {
+
+		boolean isDisabled = page().isDisabled(locator);
+		if (isDisabled == true) {
+			System.out.println("Successfully element is disabled  -  " + info);
+			ReportManager.logInfo("Successfully element is disabled  -  " + info);
+		} else {
+			ReportManager.logInfo("element not disabled: " + info);
+			System.out.println("element not is disabled: " + info);
+
+		}
+		return isDisabled;
+	}
+
+	public boolean isEnabled(String locator, String info) {
+
+		boolean isEnabled = page().isEnabled(locator);
+		if (isEnabled == true) {
+			System.out.println("Successfully element is enabled  -  " + info);
+			ReportManager.logInfo("Successfully element is enabled  -  " + info);
+		} else {
+			ReportManager.logInfo("element not enabled: " + info);
+			System.out.println("element not is enabled: " + info);
+
+		}
+		return isEnabled;
+	}
+
+	public boolean isVisible(String locator, String info) {
+		boolean isPresent = page().isVisible(locator);
+		if (isPresent == true) {
+			System.out.println("Successfully element is displayed  -  " + info);
+			ReportManager.logInfo("Successfully element is displayed  -  " + info);
+		} else {
+			ReportManager.logInfo("element not displayed: " + info);
+			System.out.println("element not displayed: " + info);
+
+		}
+		return isPresent;
+	}
+
+	public String getTitle() {
+		String title = page().title();
+		System.out.println("The title of the page is : " + title);
+		ReportManager.logInfo("The title of the page is : " + title);
+		return title;
+	}
+
+	public void uncheck(String locator, String info) {
+		page().uncheck(locator);
+		System.out.println("Successfully element is uncheck  -  " + info);
+		ReportManager.logInfo("Successfully element is uncheck  -  " + info);
+	}
+
+	public boolean isDisplayed(String locator, String info) {
+		boolean isPresent = page().isVisible(locator);
+
+		if (isPresent == true) {
+			ReportManager.logInfo("Successfully element displayed: " + info);
+			System.out.println("Successfully element displayed: " + info);
+		} else {
+			ReportManager.logInfo("element not displayed: " + info);
+			System.out.println("element not displayed: " + info);
+
+		}
+		return isPresent;
+	}
+
+	public void scrollToElement(String locator, String info) {
+		page().locator(locator).scrollIntoViewIfNeeded();
+		ReportManager.logInfo("Successfully scrolled to - " + info);
+		System.out.println("Successfully scrolled to - " + info);
+	}
+
+	public void keyboard(String keys) {
+		/**
+		 * refer this link -> https://playwright.dev/java/docs/api/class-keyboard
+		 **/
+		Keyboard key = page().keyboard();
+		key.press(keys);
+		System.out.println("Successfully clicked on  -  " + keys);
+		ReportManager.logInfo("Successfully clicked on  -  " + keys);
+	}
+
+	public void delayClick(String locator, double setDelayInMilliSec, String info) {
+		page().click(locator, new Page.ClickOptions().setDelay(setDelayInMilliSec));
+		System.out.println("Successfully clicked on  -  " + info);
+		ReportManager.logInfo("Successfully clicked on  -  " + info);
+	}
+
+	public void waitForUpload(String locator, String path, String info) {
+		page().setInputFiles(locator, Paths.get(path));
+		System.out.println("Successfully file uploaded -  " + info);
+		ReportManager.logInfo("Successfully file uploaded  -  " + info);
+	}
+
+	public String inputValue(String locator) {
+		Locator input = page().locator(locator);
+		String inputValue = input.inputValue();
+		return inputValue;
+
+	}
+
+	public void waitForDownload(String locator, String path) {
+		Download download = page().waitForDownload(() -> {
+			page().click(locator);
+		});
+		String fileName = download.suggestedFilename();
+		download.saveAs(Paths.get(path + fileName));
+		System.out.println("Successfully file downloaded -  " + fileName);
+		System.out.println("File path - " + path + fileName);
+		ReportManager.logInfo("Successfully file downloaded  -  " + fileName);
+	}
+
+	public void SelectOptionsByIndex(String locator, String index) {
+		page().selectOption(locator, index);
+		System.out.println("Successfully selected the value in Dropdown");
+		ReportManager.logInfo("Successfully selected the value in Dropdown");
+	}
+
+	public void selectOptionsByValue(String locator, String value) {
+		page().selectOption(locator, value);
+		System.out.println("Successfully selected value - " + value);
+		ReportManager.logInfo("Successfully selected value - " + value);
+	}
+
+	public void clear(String locator, String text) {
+
+		page().locator(locator).click();
+		page().keyboard().press("Control+A");
+		page().keyboard().down("Delete");
+		ReportManager.logInfo("Successfully Cleared text - " + text);
+		System.out.println("Successfully Cleared text - " + text);
+
+	}
+
+	public Page getPage() {
+		return page();
+	}
+
+	public BrowserContext getContext() {
+		return context();
+	}
+
+	public boolean waitForVisible(String locator, double setTimeoutInMilliSec, String info) {
+		// boolean isPresent = page.isVisible(locator, new
+		// Page.IsVisibleOptions().setTimeout(setTimeoutInMilliSec)); --> this statement
+		// got deprecated so,
+		ElementHandle element = page().waitForSelector(locator, new Page.WaitForSelectorOptions()
+				.setState(WaitForSelectorState.VISIBLE).setTimeout(setTimeoutInMilliSec));
+		boolean isPresent = element.isVisible();
+		if (isPresent == true) {
+			System.out.println("Successfully element is displayed  -  " + info);
+			ReportManager.logInfo("Successfully element is displayed  -  " + info);
+		} else {
+			ReportManager.logInfo("element not displayed: " + info);
+			System.out.println("element not displayed: " + info);
+
+		}
+		return isPresent;
+	}
+
+	public void waitForClick(String locator, double setTimeoutInMilliSec, String info) {
+		page().click(locator, new Page.ClickOptions().setTimeout(setTimeoutInMilliSec));
+		System.out.println("Successfully clicked on  -  " + info);
+		ReportManager.logInfo("Successfully clicked on  -  " + info);
+	}
+
+	public void waitForOpenURL(String URL, double setTimeoutInMilliSec) {
+		page().navigate(URL, new Page.NavigateOptions().setTimeout(setTimeoutInMilliSec));
+		String ActualURL = page().url();
+		System.out.println("Actual URL - " + ActualURL);
+		System.out.println("Expected URL - " + URL);
+		ReportManager.logInfo("Actual URL - " + ActualURL);
+		ReportManager.logInfo("Expected URL - " + URL);
+	}
+
+	public void retrieveExcelData() throws IOException, EncryptedDocumentException, InvalidFormatException {
+		FileInputStream fileinputstream = new FileInputStream("./Excel_File/SwagLabs_With_Sample.xlsx");
+		// FileInputStream fileinputstream = new
+		// FileInputStream("F:\\Ecubix\\PlaywrightWeb\\Ecubix_With_Sample.xlsx");
+		Workbook workbook = WorkbookFactory.create(fileinputstream);
+		String date = workbook.getSheet("SwagLabs").getRow(1).getCell(8).getStringCellValue();
+		String doctorcode = workbook.getSheet("SwagLabs").getRow(1).getCell(9).getStringCellValue();
+		String doctorname = workbook.getSheet("SwagLabs").getRow(1).getCell(10).getStringCellValue();
+		String sample = workbook.getSheet("SwagLabs").getRow(1).getCell(24).getStringCellValue();
+		String samplequantity = workbook.getSheet("SwagLabs").getRow(1).getCell(25).getStringCellValue();
+		System.out.println("TodayDate  -" + date);
+		ReportManager.logInfo("Successfully retrieved the Date  -  " + date);
+		System.out.println("DoctorCode  -" + doctorcode);
+		ReportManager.logInfo("Successfully retrieved the DoctorCode  -  " + doctorcode);
+		System.out.println("DoctorName  -" + doctorname);
+		ReportManager.logInfo("Successfully retrieved the DoctorName  -  " + doctorname);
+		System.out.println("Sample  -" + sample);
+		ReportManager.logInfo("Successfully retrieved the Sample  -  " + sample);
+		System.out.println("SampleQuantity -" + samplequantity);
+		ReportManager.logInfo("Successfully retrieved the SampleQuantity  -  " + samplequantity);
+
+	}
+
+	public SubmissionResult validateSubmission(
+			String successBtn,
+			String toastLoc,
+			String errorLoc,
+			String formLoc,
+			int timeoutMs) {
+
+		long end = System.currentTimeMillis() + timeoutMs;
+
+		while (System.currentTimeMillis() < end) {
+
+			// ✅ SUCCESS BUTTON
+			boolean hasSuccessBtn = page().locator(successBtn).count() > 0;
+
+			// ✅ TOAST
+			String toastText = null;
+			try {
+				Locator toast = page().locator(toastLoc);
+				if (toast.count() > 0) {
+					toastText = toast.first().textContent();
+				}
+			} catch (Exception ignored) {
+			}
+
+			String toast = toastText == null ? "" : toastText.toLowerCase().replaceAll("\\s+", " ").trim();
+
+			boolean isSuccessToast = toast.contains("success") ||
+					toast.contains("submitted") ||
+					toast.contains("created");
+
+			boolean isErrorToast = toast.contains("error") ||
+					toast.contains("failed") ||
+					toast.contains("invalid") ||
+					toast.contains("check the form");
+
+			boolean hasFieldErrors = page().locator(errorLoc).count() > 0;
+			boolean hasErrors = hasFieldErrors || isErrorToast;
+			boolean isFormVisible = false;
+			try {
+				Locator form = page().locator(formLoc);
+				isFormVisible = form.count() > 0 && form.first().isVisible();
+			} catch (Exception ignored) {
+			}
+
+			// ✅ FINAL
+			boolean isSubmitted = hasSuccessBtn || isSuccessToast;
+
+			if (isSubmitted || hasErrors) {
+				return new SubmissionResult(isSubmitted, hasErrors, isFormVisible, toastText);
+			}
+
+			page().waitForTimeout(300);
+		}
+
+		return new SubmissionResult(false, false, true, null);
+	}
+
+	public class SubmissionResult {
+		public boolean isSubmitted;
+		public boolean hasErrors;
+		public boolean isFormVisible;
+		public String toastMessage;
+
+		public SubmissionResult(boolean isSubmitted, boolean hasErrors, boolean isFormVisible, String toastMessage) {
+			this.isSubmitted = isSubmitted;
+			this.hasErrors = hasErrors;
+			this.isFormVisible = isFormVisible;
+			this.toastMessage = toastMessage;
+		}
+	}
+
+	public void verifyMultipleText(String locator, String expectedTextFromConfig, String elementName) {
+
+		// Step 1: Convert config string → List
+		List<String> expectedTexts = Arrays.stream(expectedTextFromConfig.split(","))
+				.map(String::trim)
+				.collect(Collectors.toList());
+
+		// Step 2: Get UI texts
+		List<String> actualTexts = page().locator(locator).allTextContents()
+				.stream()
+				.map(String::trim)
+				.collect(Collectors.toList());
+
+		// Step 3: Validation
+		for (String expected : expectedTexts) {
+
+			boolean found = actualTexts.stream()
+					.anyMatch(actual -> actual.equalsIgnoreCase(expected));
+
+			if (!found) {
+				throw new AssertionError(elementName + ": " + expected);
+			} else {
+				System.out.println(elementName + ": " + expected);
+			}
+		}
+	}
+
+	public void selectDate(String inputLocator,
+			String monthYearLocator,
+			String nextButtonLocator,
+			String prevButtonLocator,
+			String dayLocatorTemplate,
+			String dateValue,
+			String info) {
+
+		try {
+			// Parse date
+			String[] parts = dateValue.split("/");
+			int targetDay = Integer.parseInt(parts[0]);
+			int targetMonth = Integer.parseInt(parts[1]);
+			int targetYear = Integer.parseInt(parts[2]);
+
+			String[] months = { "January", "February", "March", "April", "May", "June",
+					"July", "August", "September", "October", "November", "December" };
+
+			// Function to open calendar safely
+			Runnable openCalendar = () -> {
+				page().click(inputLocator);
+				page().waitForSelector(monthYearLocator);
+			};
+
+			// Open initially
+			openCalendar.run();
+
+			Locator monthYear = page().locator(monthYearLocator).first();
+			Locator nextBtn = page().locator(nextButtonLocator).first();
+			Locator prevBtn = page().locator(prevButtonLocator).first();
+
+			int attempts = 0;
+
+			while (attempts < 36) {
+
+				// 🔁 If calendar closed → reopen
+				if (!monthYear.isVisible()) {
+					openCalendar.run();
+
+					// Re-bind locators (IMPORTANT after re-render)
+					monthYear = page().locator(monthYearLocator).first();
+					nextBtn = page().locator(nextButtonLocator).first();
+					prevBtn = page().locator(prevButtonLocator).first();
+				}
+
+				String header = monthYear.textContent();
+
+				if (header == null || header.trim().isEmpty()) {
+					Thread.sleep(200);
+					continue;
+				}
+
+				// Normalize header
+				header = header.replaceAll("[,\\n]", " ")
+						.replaceAll("\\s+", " ")
+						.trim();
+
+				String[] partsHeader = header.split(" ");
+
+				if (partsHeader.length < 2) {
+					throw new RuntimeException("Invalid header: " + header);
+				}
+
+				String monthName = partsHeader[0];
+				int year = Integer.parseInt(partsHeader[1]);
+
+				// Convert month name → number
+				int month = 0;
+				for (int i = 0; i < months.length; i++) {
+					if (months[i].equalsIgnoreCase(monthName) ||
+							months[i].startsWith(monthName)) {
+						month = i + 1;
+						break;
+					}
+				}
+
+				// ✅ Target reached
+				if (month == targetMonth && year == targetYear) {
+					break;
+				}
+
+				String prevHeader = header;
+
+				// Navigate
+				if (year < targetYear || (year == targetYear && month < targetMonth)) {
+					nextBtn.click();
+				} else {
+					prevBtn.click();
+				}
+
+				// Wait for header to change OR calendar close
+				int wait = 0;
+				while (wait < 10) {
+
+					// If closed → break and reopen in next loop
+					if (!monthYear.isVisible()) {
+						break;
+					}
+
+					String newHeader = monthYear.textContent();
+
+					if (newHeader != null &&
+							!newHeader.trim().equals(prevHeader)) {
+						break;
+					}
+
+					Thread.sleep(200);
+					wait++;
+				}
+
+				attempts++;
+			}
+
+			// 🔁 Ensure calendar is open before selecting day
+			if (!monthYear.isVisible()) {
+				openCalendar.run();
+			}
+
+			// Select day
+			Locator day = page().locator(
+					dayLocatorTemplate.replace("{day}", String.valueOf(targetDay))).first();
+
+			day.waitFor();
+			day.click();
+
+			System.out.println("Selected date: " + dateValue + " (" + info + ")");
+
+			// Close calendar safely
+			if (monthYear.isVisible()) {
+				page().keyboard().press("Escape");
+			}
+
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to select date: " + dateValue + " (" + info + ")", e);
+		}
+	}
+
+	public void selectTime(String inputLocator,
+			String hourValueLocator,
+			String minuteValueLocator,
+			String meridianValueLocator,
+			String hourUpLocator,
+			String hourDownLocator,
+			String minuteUpLocator,
+			String minuteDownLocator,
+			String meridianToggleLocator,
+			String timeValue,
+			String info) {
+
+		try {
+			// Validate input
+			if (timeValue == null || timeValue.trim().isEmpty()) {
+				throw new IllegalArgumentException("Time value is empty for " + info);
+			}
+			// Split time (hh:mm AM/PM)
+			String[] parts = timeValue.trim().split(" ");
+			if (parts.length != 2) {
+				throw new IllegalArgumentException("Time value format invalid for '" + timeValue + "' in " + info
+						+ ". Expected format: hh:mm AM/PM");
+			}
+			String[] hm = parts[0].split(":");
+			if (hm.length != 2) {
+				throw new IllegalArgumentException("Time value hour:minute part invalid for '" + timeValue + "' in "
+						+ info + ". Expected format: hh:mm");
+			}
+
+			int targetHour = Integer.parseInt(hm[0]);
+			int targetMinute = Integer.parseInt(hm[1]);
+			String targetMeridian = parts[1];
+
+			// Open time picker
+			page().click(inputLocator);
+
+			// Wait for time picker to load
+			page().waitForTimeout(500);
+
+			// --- Adjust Hour ---
+			int hourAttempts = 0;
+			while (hourAttempts < 24) {
+				page().waitForTimeout(100);
+
+				int currentHour = -1;
+				String hourText = "";
+
+				try {
+					Locator hourLocator = page().locator(hourValueLocator);
+					int elementCount = hourLocator.count();
+
+					if (elementCount == 0) {
+						System.out.println("WARNING: Hour value locator found 0 elements for '" + hourValueLocator
+								+ "', checking alternative locators...");
+						// Try alternative: look for any visible hour-like elements
+						hourLocator = page().locator("//div[contains(@class, 'rmdp-input')]//input[1]");
+						if (hourLocator.count() == 0) {
+							hourLocator = page().locator("//input[@type='text'][1]");
+						}
+					}
+
+					hourText = hourLocator.first().textContent().trim();
+					if (hourText.isEmpty()) {
+						hourText = hourLocator.first().inputValue().trim();
+					}
+
+					if (hourText.isEmpty()) {
+						throw new IllegalStateException(
+								"Hour value could not be read - locator: '" + hourValueLocator + "'");
+					}
+
+					currentHour = Integer.parseInt(hourText);
+				} catch (NumberFormatException e) {
+					throw new IllegalStateException("Hour value is not numeric: '" + hourText + "' for " + info, e);
+				} catch (Exception e) {
+					throw new IllegalStateException("Error reading hour value for " + info + ": " + e.getMessage(), e);
+				}
+
+				if (currentHour == targetHour)
+					break;
+
+				if (currentHour < targetHour) {
+					page().click(hourUpLocator);
+				} else {
+					page().click(hourDownLocator);
+				}
+
+				hourAttempts++;
+			}
+
+			if (hourAttempts == 24) {
+				throw new RuntimeException("Hour selection failed for " + info);
+			}
+
+			// --- Adjust Minute ---
+			int minuteAttempts = 0;
+			while (minuteAttempts < 60) {
+				page().waitForTimeout(100);
+
+				int currentMinute = -1;
+				String minuteText = "";
+
+				try {
+					Locator minuteLocator = page().locator(minuteValueLocator);
+					int elementCount = minuteLocator.count();
+
+					if (elementCount == 0) {
+						System.out.println("WARNING: Minute value locator found 0 elements for '" + minuteValueLocator
+								+ "', checking alternative locators...");
+						// Try alternative: look for any visible minute-like elements
+						minuteLocator = page().locator("//div[contains(@class, 'rmdp-input')]//input[2]");
+						if (minuteLocator.count() == 0) {
+							minuteLocator = page().locator("//input[@type='text'][2]");
+						}
+					}
+
+					minuteText = minuteLocator.first().textContent().trim();
+					if (minuteText.isEmpty()) {
+						minuteText = minuteLocator.first().inputValue().trim();
+					}
+
+					if (minuteText.isEmpty()) {
+						throw new IllegalStateException(
+								"Minute value could not be read - locator: '" + minuteValueLocator + "'");
+					}
+
+					currentMinute = Integer.parseInt(minuteText);
+				} catch (NumberFormatException e) {
+					throw new IllegalStateException("Minute value is not numeric: '" + minuteText + "' for " + info, e);
+				} catch (Exception e) {
+					throw new IllegalStateException("Error reading minute value for " + info + ": " + e.getMessage(),
+							e);
+				}
+
+				if (currentMinute == targetMinute)
+					break;
+
+				if (currentMinute < targetMinute) {
+					page().click(minuteUpLocator);
+				} else {
+					page().click(minuteDownLocator);
+				}
+
+				minuteAttempts++;
+			}
+
+			if (minuteAttempts == 60) {
+				throw new RuntimeException("Minute selection failed for " + info);
+			}
+
+			// --- Adjust AM/PM ---
+			String currentMeridian = page().locator(meridianValueLocator).textContent().trim();
+
+			if (!currentMeridian.equalsIgnoreCase(targetMeridian)) {
+				page().click(meridianToggleLocator);
+			}
+
+			System.out.println("Successfully selected time - " + timeValue + " in " + info);
+			ReportManager.logInfo("Successfully selected time - " + timeValue + " in " + info);
+
+		} catch (Exception e) {
+			System.out.println("Failed to select time - " + timeValue + " in " + info);
+			ReportManager.logInfo("Failed to select time - " + timeValue + " in " + info);
+			throw e;
+		}
+	}
+
+	public void selectYesNoOption(String questionLabel, String value, String info) {
+
+		try {
+			// Normalize input
+			String input = value.trim().toLowerCase();
+
+			if (!input.equals("yes") && !input.equals("no")) {
+				throw new IllegalArgumentException("Invalid value: " + value + " | Only Yes/No allowed");
+			}
+
+			// Dynamic locator based on label text
+			String baseLocator = "//label[normalize-space()='" + questionLabel + "']/following::input[@type='radio']";
+
+			Locator options = page().locator(baseLocator);
+
+			if (options.count() < 2) {
+				throw new RuntimeException("Radio buttons not found for question: " + questionLabel);
+			}
+
+			// Index 0 = Yes, Index 1 = No (assuming UI order)
+			int indexToClick = input.equals("yes") ? 0 : 1;
+
+			options.nth(indexToClick).click();
+
+			System.out.println("Selected '" + value + "' for: " + questionLabel);
+			ReportManager.logInfo("Selected '" + value + "' for: " + questionLabel);
+
+		} catch (Exception e) {
+			System.out.println("Failed to select '" + value + "' for: " + questionLabel);
+			ReportManager.logInfo("Failed to select '" + value + "' for: " + questionLabel);
+			throw e;
+		}
+	}
+
+	public void mockApi(
+			String urlPattern,
+			String method,
+			String containsUrl,
+			int statusCode,
+			String responseBody) {
+
+		page().route(urlPattern, route -> {
+
+			Request request = route.request();
+
+			String requestUrl = request.url();
+
+			// Match method + specific URL condition
+			if (request.method().equalsIgnoreCase(method)
+					&& requestUrl.contains(containsUrl)) {
+
+				System.out.println("=========== MOCK API ===========");
+				System.out.println("URL    : " + requestUrl);
+				System.out.println("METHOD : " + request.method());
+
+				route.fulfill(new Route.FulfillOptions()
+						.setStatus(statusCode)
+						.setContentType("application/json")
+						.setBody(responseBody));
+
+			} else {
+
+				// Continue other APIs normally
+				route.resume();
+			}
+		});
+	}
+}

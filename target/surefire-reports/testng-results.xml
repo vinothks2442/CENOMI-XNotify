@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-05-20T23:07:13 IST" name="Suite" finished-at="2026-05-20T23:08:04 IST" duration-ms="51617">
+    <groups>
+      <group name="cucumber">
+        <method signature="Playground.scenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" name="scenario" class="com.xnotify.bdd.common.runner.Playground"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2026-05-20T23:07:13 IST" name="Web" finished-at="2026-05-20T23:08:04 IST" duration-ms="51617">
+      <class name="com.xnotify.bdd.common.runner.Playground">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" started-at="2026-05-20T23:07:13 IST" name="setUpClass" finished-at="2026-05-20T23:07:14 IST" duration-ms="925" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="scenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" started-at="2026-05-20T23:07:14 IST" name="scenario" description="Run Cucumber Scenario" data-provider="scenarios" finished-at="2026-05-20T23:08:01 IST" duration-ms="47599" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["TC_001 Verify Welcome Series campaign using Push node"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["XNotifi Campaign Builder Automation"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="com.microsoft.playwright.TimeoutError">
+            <message>
+              <![CDATA[Error {
+  message='Timeout 10000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 10000ms exceeded.
+    at ProgressController.run (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\progress.js:87:26)
+    at Frame.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\frames.js:619:23)
+    at FrameDispatcher.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\frameDispatcher.js:106:103)
+    at FrameDispatcher._handleCommand (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:362:39)
+}
+Call log:
+- waiting for locator("//div[contains(text(),'successfully')]") to be visible
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 10000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 10000ms exceeded.
+    at ProgressController.run (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\progress.js:87:26)
+    at Frame.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\frames.js:619:23)
+    at FrameDispatcher.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\frameDispatcher.js:106:103)
+    at FrameDispatcher._handleCommand (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:362:39)
+}
+Call log:
+- waiting for locator("//div[contains(text(),'successfully')]") to be visible
+
+at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:52)
+at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:120)
+at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:129)
+at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
+at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1060)
+at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1050)
+at com.microsoft.playwright.impl.PageImpl.lambda$waitForSelector$92(PageImpl.java:1457)
+at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
+at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
+at com.microsoft.playwright.impl.PageImpl.waitForSelector(PageImpl.java:1456)
+at com.xnotify.bdd.ccl.PlayActions.waitForVisible(PlayActions.java:621)
+at com.xnotify.bdd.web.screens.CampaignBuilderScreen.verifyCampaignCreated(CampaignBuilderScreen.java:111)
+at com.xnotify.bdd.web.step_definitions.CampaignBuilderSteps.verifyCampaignCreated(CampaignBuilderSteps.java:77)
+at ✽.campaign should be created successfully(file:///C:/Users/TECQNIO/Documents/GitHub/CENOMI-XNotify/src/test/java/com/xnotify/bdd/web/features/CampaignBuilder.feature:25)
+Caused by: com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 10000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 10000ms exceeded.
+    at ProgressController.run (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\progress.js:87:26)
+    at Frame.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\frames.js:619:23)
+    at FrameDispatcher.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\frameDispatcher.js:106:103)
+    at FrameDispatcher._handleCommand (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:362:39)
+}
+Call log:
+- waiting for locator("//div[contains(text(),'successfully')]") to be visible
+
+at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:254)
+at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:209)
+at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:118)
+at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:129)
+at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
+at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1060)
+at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1050)
+at com.microsoft.playwright.impl.PageImpl.lambda$waitForSelector$92(PageImpl.java:1457)
+at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
+at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
+at com.microsoft.playwright.impl.PageImpl.waitForSelector(PageImpl.java:1456)
+at com.xnotify.bdd.ccl.PlayActions.waitForVisible(PlayActions.java:621)
+at com.xnotify.bdd.web.screens.CampaignBuilderScreen.verifyCampaignCreated(CampaignBuilderScreen.java:111)
+at com.xnotify.bdd.web.step_definitions.CampaignBuilderSteps.verifyCampaignCreated(CampaignBuilderSteps.java:77)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:85)
+at io.cucumber.core.runner.TestStep.run(TestStep.java:57)
+at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:129)
+at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:129)
+at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+at com.xnotify.bdd.common.runner.Playground.scenario(Playground.java:39)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:134)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:597)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:816)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:766)
+at org.testng.TestRunner.run(TestRunner.java:587)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1187)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1109)
+at org.testng.TestNG.runSuites(TestNG.java:1039)
+at org.testng.TestNG.run(TestNG.java:1007)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.microsoft.playwright.TimeoutError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" started-at="2026-05-20T23:08:03 IST" name="tearDownClass" finished-at="2026-05-20T23:08:04 IST" duration-ms="1986" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- com.xnotify.bdd.common.runner.Playground -->
+    </test> <!-- Web -->
+  </suite> <!-- Suite -->
+</testng-results>
