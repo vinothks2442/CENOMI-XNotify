@@ -1,10 +1,12 @@
 package com.xnotify.bdd.web.screens;
 
 import com.xnotify.bdd.ccl.PlayActions;
+import com.xnotify.bdd.integrations.common_utils.RandomGenerator;
 
 public class CampaignBuilderScreen {
 
     PlayActions play = new PlayActions();
+    RandomGenerator random = new RandomGenerator();
 
     String messagingMenu = "//span[text()='Messaging']";
     String campaignBuilderMenu = "//div[text()='Campaigns']";
@@ -44,8 +46,8 @@ public class CampaignBuilderScreen {
         play.click(createCampaignButton, "Create Campaign");
     }
 
-    public void enterCampaignName(String campaignName) {
-        play.fill(campaignNameField, campaignName, "Campaign Name");
+    public void enterCampaignName() {
+        play.fill(campaignNameField, RandomGenerator.randomString(10), "Campaign Name");
     }
 
     public void enterCampaignDescription(String description) {
