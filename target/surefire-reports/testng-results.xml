@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-18T16:26:55 IST" name="Suite" finished-at="2026-06-18T16:27:27 IST" duration-ms="31878">
+    <groups>
+      <group name="cucumber">
+        <method signature="Playground.scenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" name="scenario" class="com.xnotify.bdd.common.runner.Playground"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2026-06-18T16:26:55 IST" name="Web" finished-at="2026-06-18T16:27:27 IST" duration-ms="31878">
+      <class name="com.xnotify.bdd.common.runner.Playground">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" started-at="2026-06-18T16:26:55 IST" name="setUpClass" finished-at="2026-06-18T16:26:56 IST" duration-ms="860" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="scenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" started-at="2026-06-18T16:26:56 IST" name="scenario" description="Run Cucumber Scenario" data-provider="scenarios" finished-at="2026-06-18T16:27:25 IST" duration-ms="28708" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["TC_003 Verify Welcome Series campaign using Push node"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["XNotifi Campaign Builder Automation"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.xnotify.bdd.common.runner.Playground@2ddc8ecb]" started-at="2026-06-18T16:27:25 IST" name="tearDownClass" finished-at="2026-06-18T16:27:27 IST" duration-ms="1598" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- com.xnotify.bdd.common.runner.Playground -->
+    </test> <!-- Web -->
+  </suite> <!-- Suite -->
+</testng-results>
