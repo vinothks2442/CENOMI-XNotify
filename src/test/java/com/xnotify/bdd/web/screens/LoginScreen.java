@@ -1,6 +1,9 @@
 package com.xnotify.bdd.web.screens;
 
+import java.nio.file.Paths;
+import com.microsoft.playwright.BrowserContext;
 import com.xnotify.bdd.ccl.PlayActions;
+import com.xnotify.bdd.integrations.common_utils.BrowserFactory;
 import com.xnotify.bdd.integrations.common_utils.ConfigReader;
 
 import junit.framework.Assert;
@@ -43,6 +46,7 @@ public class LoginScreen {
         public void clickLoginButton() {
                 play.click(btnLogin,
                                 "Login Button");
+
         }
 
         public void selectRememberMeCheckbox() {
@@ -67,6 +71,14 @@ public class LoginScreen {
                 Assert.assertEquals(
                                 "Notifi",
                                 actualHeading);
+                BrowserFactory.getInstance()
+                                .getBrowserContext()
+                                .storageState(
+                                                new BrowserContext.StorageStateOptions()
+                                                                .setPath(Paths.get(
+                                                                                "src/test/resources/auth/session.json")));
+
+                System.out.println("Session Saved");
         }
 
         public void verifyLoginPageIsVisible() {

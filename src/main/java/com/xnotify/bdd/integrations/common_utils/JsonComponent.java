@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.common_utils;
+package com.XNotify.bdd.integrations.common_utils;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.NG_listners;
+package com.XNotify.bdd.integrations.NG_listners;
 
 import java.lang.reflect.Method;
 
@@ -11,7 +11,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.xnotify.bdd.integrations.report_utils.ReportManager;
+import com.XNotify.bdd.integrations.report_utils.ReportManager;
 
 public class APIEvent implements ITestListener {
 

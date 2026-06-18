@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.report_utils;
+package com.XNotify.bdd.integrations.report_utils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.XNotify.bdd.integrations.common_utils.Constants;
+import com.XNotify.bdd.integrations.common_utils.DriverFactory;
+import com.XNotify.bdd.integrations.report_utils.ScreenshotUtil;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -15,9 +18,6 @@ import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.microsoft.playwright.*;
-import com.xnotify.bdd.integrations.common_utils.Constants;
-import com.xnotify.bdd.integrations.common_utils.DriverFactory;
-import com.xnotify.bdd.integrations.report_utils.ScreenshotUtil;
 
 public class ReportManager {
 

@@ -30,64 +30,64 @@ public class ResourceURIS {
 	private static final String verifyOtp1 = "/gypsee/mobile/otp/verify?checkUser=false&version=v3";
 	private static final String getRegisteredDevice = "/gypsee/user/{USER_ID}/registered/devices";
 	private static final String StartTrip = "/user/trip/start";
-	private static final String tripEnd  ="/user/trip/end/v2?isGenerateVHSReport=true&isSendNotification=true";
+	private static final String tripEnd = "/user/trip/end/v2?isGenerateVHSReport=true&isSendNotification=true";
 
 	public static String getResourceURI(String requestName) {
 		switch (requestName) {
 
-		case "GetOtpInvalidCountryCode":
-			return GetOtpInvalidCountryCode;
-		case "GetOtpInvalidPhoneNumber":
-			return GetOtpInvalidPhoneNumber;
-		case "VerifyOtp":
-			return VerifyOtp;
-		case "Post_addDevice":
-			return Post_addDevice;
-		case "GetOtp":
-			return GetOtp;
-		case "GetOtpInvalidUri":
-			return GetOtpInvalidUri;
-		case "VerifyOtpInvalidUri":
-			return VerifyOtpInvalidUri;
-		case "VerifyOtpInvalidCountryCode":
-			return VerifyOtpInvalidCountryCode;
-		case "VerifyOtpInvalidPhoneNumber":
-			return VerifyOtpInvalidPhoneNumber;
-		case "sendOtpInvalidCountryCode":
-			return sendOtpInvalidCountryCode;
+			case "GetOtpInvalidCountryCode":
+				return GetOtpInvalidCountryCode;
+			case "GetOtpInvalidPhoneNumber":
+				return GetOtpInvalidPhoneNumber;
+			case "VerifyOtp":
+				return VerifyOtp;
+			case "Post_addDevice":
+				return Post_addDevice;
+			case "GetOtp":
+				return GetOtp;
+			case "GetOtpInvalidUri":
+				return GetOtpInvalidUri;
+			case "VerifyOtpInvalidUri":
+				return VerifyOtpInvalidUri;
+			case "VerifyOtpInvalidCountryCode":
+				return VerifyOtpInvalidCountryCode;
+			case "VerifyOtpInvalidPhoneNumber":
+				return VerifyOtpInvalidPhoneNumber;
+			case "sendOtpInvalidCountryCode":
+				return sendOtpInvalidCountryCode;
 
-		case "sendOtp":
-			return sendOtp;
-		case "sendOtpInvalidUri":
-			return sendOtpInvalidUri;
+			case "sendOtp":
+				return sendOtp;
+			case "sendOtpInvalidUri":
+				return sendOtpInvalidUri;
 
-		case "getLatituteLongitude":
-			return getLatituteLongitude;
-		case "getLatituteLongitudeInvalidUri":
-			return getLatituteLongitudeInvalidUri;
+			case "getLatituteLongitude":
+				return getLatituteLongitude;
+			case "getLatituteLongitudeInvalidUri":
+				return getLatituteLongitudeInvalidUri;
 
-		case "getDrivingAlertsByTripId":
-			return getDrivingAlertsByTripId;
-		case "getDrivingAlertsByTripIdInvalidURI":
-			return getDrivingAlertsByTripIdInvalidURI;
+			case "getDrivingAlertsByTripId":
+				return getDrivingAlertsByTripId;
+			case "getDrivingAlertsByTripIdInvalidURI":
+				return getDrivingAlertsByTripIdInvalidURI;
 
-		case "getTripsByUserID":
-			return getTripsByUserID;
-		case "getTripsByUserIDInvalidURI":
-			return getTripsByUserIDInvalidURI;
-		case "verifyOtp1":
-			return verifyOtp1;
-		case "vehicleListByUserID":
-			return vehicleListByUserID;
-		case "getRegisteredDevice":
-			return getRegisteredDevice;
-		case "StartTrip":
-			return StartTrip;
-		case "tripEnd":
-            return tripEnd;
+			case "getTripsByUserID":
+				return getTripsByUserID;
+			case "getTripsByUserIDInvalidURI":
+				return getTripsByUserIDInvalidURI;
+			case "verifyOtp1":
+				return verifyOtp1;
+			case "vehicleListByUserID":
+				return vehicleListByUserID;
+			case "getRegisteredDevice":
+				return getRegisteredDevice;
+			case "StartTrip":
+				return StartTrip;
+			case "tripEnd":
+				return tripEnd;
 
-		default:
-			throw new RuntimeException("Resource uri not defined for the specific file name - " + requestName);
+			default:
+				throw new RuntimeException("Resource uri not defined for the specific file name - " + requestName);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.common_utils;
+package com.XNotify.bdd.integrations.common_utils;
 
 import static io.restassured.RestAssured.given;
 
@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import java.io.File;
 import java.util.Map;
 
-import com.xnotify.bdd.integrations.report_utils.ReportManager;
+import com.XNotify.bdd.integrations.report_utils.ReportManager;
 
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;

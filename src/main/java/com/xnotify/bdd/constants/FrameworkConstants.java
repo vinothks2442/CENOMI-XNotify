@@ -1,6 +1,6 @@
-package com.xnotify.bdd.constants;
+package com.XNotify.bdd.constants;
 
-import com.xnotify.bdd.integrations.common_utils.ReportPathUtils;
+import com.XNotify.bdd.integrations.common_utils.ReportPathUtils;
 
 public class FrameworkConstants {
 

@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="methods" thread-count="2">
 	<test name="API">
 		<classes>
-			<class name="com.Gypsee.bdd.common.runner.API_Runner"></class>
+			<class name="com.xnotify.bdd.common.runner.API_Runner"></class>
 		</classes>
 	</test>
 </suite> <!-- Suite -->

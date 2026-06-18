@@ -1,4 +1,4 @@
-package com.xnotify.bdd.enums;
+package com.XNotify.bdd.enums;
 
 
 /**A Java Enum is a special Java type used to define collections of constants.*/

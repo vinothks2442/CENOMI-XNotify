@@ -12,7 +12,7 @@ Feature: XNotifi Campaign Builder Automation
   @WelcomeSeries_PushBasic
   Scenario: TC_001 Verify Welcome Series campaign using Push node
     When user clicks create campaign button
-    And user enters campaign name as "Automation Campaign 1"
+    And user enters campaign name
     And user enters campaign description as "This is a test campaign created using automation"
     And user selects campaign type as "Welcome Series"
     And user selects campaign goal as "Engagement"

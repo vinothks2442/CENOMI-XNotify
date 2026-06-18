@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.common_utils;
+package com.XNotify.bdd.integrations.common_utils;
 
 import com.codoid.products.exception.FilloException;
 import com.codoid.products.fillo.Connection;

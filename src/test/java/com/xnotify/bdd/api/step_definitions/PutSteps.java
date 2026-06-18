@@ -28,7 +28,7 @@ public class PutSteps {
 	public void postwithPayload(String requestName) {
 		apiTestContext.getApiTestBase().specification
 				.baseUri(RestAssuredUtils.baseURI);
-		String request = apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.PAYLOAD.name(),requestName);
+		String request = apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.PAYLOAD.name(), requestName);
 		if (!apiTestContext.getApiTestBase().requestData.isEmpty()) {
 			apiTestContext.getApiTestBase().response = RestAssuredUtils.put(
 					apiTestContext.getApiTestBase().specification, request,
@@ -40,18 +40,18 @@ public class PutSteps {
 		}
 
 	}
-	
+
 	@When("^I hit the put request to \"([^\"]*)\" Endpoint with path params$")
-	public void putwithPayloadwithPathparam(String requestName,DataTable dataTable) {
-		
+	public void putwithPayloadwithPathparam(String requestName, DataTable dataTable) {
+
 		List<Map<String, String>> table = dataTable.asMaps();
 		Map<String, Object> pathParams = new HashMap<String, Object>();
 		for (int i = 0; i < table.size(); i++) {
 			pathParams.put(table.get(i).get("Path"), table.get(i).get("Value"));
 		}
 		String request = apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.PAYLOAD.name());
-//		apiTestContext.getApiTestBase().specification
-//		.baseUri(apiTestContext.getApiTestBase().requestData.get(0).get(WS_PayloadsHeaders.BASE_URI.name()));
+		// apiTestContext.getApiTestBase().specification
+		// .baseUri(apiTestContext.getApiTestBase().requestData.get(0).get(WS_PayloadsHeaders.BASE_URI.name()));
 		apiTestContext.getApiTestBase().response = RestAssuredUtils.put(apiTestContext.getApiTestBase().specification,
 				request,
 				apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()),
@@ -67,8 +67,8 @@ public class PutSteps {
 		List<Map<String, String>> table = dataTable.asMaps();
 		Map<String, Object> pathParams = new HashMap<String, Object>();
 		for (int i = 0; i < table.size(); i++) {
-						pathParams.put(table.get(i).get("Path"),
-								(table.get(i).get("Value") == null) ? "" : table.get(i).get("Value"));
+			pathParams.put(table.get(i).get("Path"),
+					(table.get(i).get("Value") == null) ? "" : table.get(i).get("Value"));
 		}
 		apiTestContext.getApiTestBase().response = RestAssuredUtils.put(apiTestContext.getApiTestBase().specification,
 				apiTestContext.getApiTestBase().requestData.get(0).get(WS_PayloadsHeaders.PAYLOAD.name()),

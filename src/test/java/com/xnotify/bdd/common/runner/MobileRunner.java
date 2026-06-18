@@ -20,8 +20,9 @@ import io.cucumber.testng.TestNGCucumberRunner;
 @CucumberOptions(features = "src/test/java/com/Gypsee/bdd/mobile/features", glue = {
 		"com/Gypsee/bdd/mobile/step_definitions", "com/Gypsee/bdd/common/hooks" }, tags = "@Login",
 
-		plugin = { "pretty", "json:target/cucumber/cucumber.json", "html:target/site/cucumber-pretty/cucumber_Mobile.html",
-				 }, monochrome = true, publish = true, dryRun = false)
+		plugin = { "pretty", "json:target/cucumber/cucumber.json",
+				"html:target/site/cucumber-pretty/cucumber_Mobile.html",
+		}, monochrome = true, publish = true, dryRun = false)
 public class MobileRunner {
 	private TestNGCucumberRunner testNGCucumberRunner;
 

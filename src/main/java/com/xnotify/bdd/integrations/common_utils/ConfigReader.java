@@ -82,7 +82,7 @@ public class ConfigReader {
 
 		return prop.getProperty(key);
 	}
-	
+
 	/**
 	 * will set sting value from properties file
 	 * 
@@ -97,18 +97,17 @@ public class ConfigReader {
 
 		FileOutputStream output = new FileOutputStream(path);
 
-            Properties prop = new Properties();
+		Properties prop = new Properties();
 
-            // set the properties value
-            prop.setProperty(key, value);
+		// set the properties value
+		prop.setProperty(key, value);
 
-            // save properties to project root folder
-            prop.store(output, null);
-            output.close();
-		
+		// save properties to project root folder
+		prop.store(output, null);
+		output.close();
+
 	}
-	
-	
+
 	public static void moveFile(String outFileName, String sourcePath, String destinationPath, String fileextention)
 			throws IOException {
 		File source = new File(sourcePath);
@@ -118,7 +117,5 @@ public class ConfigReader {
 		FileUtils.copyFile(source, destination);
 		System.out.println(" new file name is " + outFileName);
 	}
-
-
 
 }

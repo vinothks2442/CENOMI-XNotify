@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.NG_listners;
+package com.XNotify.bdd.integrations.NG_listners;
 
 import java.io.IOException;
 
@@ -10,12 +10,12 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeTest;
 
-import com.xnotify.bdd.ccl.MobileActions;
-import com.xnotify.bdd.integrations.common_utils.ConfigReader;
-import com.xnotify.bdd.integrations.common_utils.DriverFactory;
-import com.xnotify.bdd.integrations.common_utils.MobileUtil;
-import com.xnotify.bdd.integrations.common_utils.VideoRecord;
-import com.xnotify.bdd.integrations.report_utils.ReportManager;
+import com.XNotify.bdd.ccl.MobileActions;
+import com.XNotify.bdd.integrations.common_utils.ConfigReader;
+import com.XNotify.bdd.integrations.common_utils.DriverFactory;
+import com.XNotify.bdd.integrations.common_utils.MobileUtil;
+import com.XNotify.bdd.integrations.common_utils.VideoRecord;
+import com.XNotify.bdd.integrations.report_utils.ReportManager;
 
 import io.appium.java_client.android.AndroidDriver;
 

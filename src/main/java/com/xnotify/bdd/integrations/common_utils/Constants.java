@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.common_utils;
+package com.XNotify.bdd.integrations.common_utils;
 
 public class Constants {
 

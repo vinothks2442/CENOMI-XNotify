@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Suite" class="navigator-link">
-              <span class="suite-name border-failed">Suite</span>
+              <span class="suite-name border-passed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Suite" class="navigator-link ">
-                    <span>C:\Users\TECQNIO\Documents\GitHub\CENOMI-XNotify\src\test\resources\NG_XMLs\WebPlay.xml</span>
+                    <span>C:\Users\TECQNIO\Documents\GitHub\CENOMI-XNotify\src\test\resources\NG_XMLs\Api_Testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -59,7 +59,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="group-Suite" class="navigator-link ">
-                    <span>1 group</span>
+                    <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -91,21 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
-                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
-                    </span>
-                    <div class="method-list-content failed suite-Suite">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.xnotify.bdd.common.runner.Playground" class="method navigator-link" hash-for-method="scenario(&quot;TC_001 Verify Welcome Series campaign using Push node&quot;, &quot;XNotifi Campaign Builder Automation&quot;)">scenario("TC_001 Verify Welcome Series campaign using Push node", "XNotifi Campaign Builder Automation")</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Suite -->
+                    <span class="method-stats">0 methods,   </span>
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,114 +103,21 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.xnotify.bdd.common.runner.Playground</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="scenario(&quot;TC_001 Verify Welcome Series campaign using Push node&quot;, &quot;XNotifi Campaign Builder Automation&quot;)">
-                  </a> <!-- scenario("TC_001 Verify Welcome Series campaign using Push node", "XNotifi Campaign Builder Automation") -->
-                  <span class="method-name">scenario</span>
-                  <span class="parameters">("TC_001 Verify Welcome Series campaign using Push node", "XNotifi Campaign Builder Automation")</span>
-                  <div class="stack-trace">com.microsoft.playwright.TimeoutError: Error {
-  message=&apos;Timeout 10000ms exceeded.
-  name=&apos;TimeoutError
-  stack=&apos;TimeoutError: Timeout 10000ms exceeded.
-    at ProgressController.run (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\progress.js:87:26)
-    at Frame.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\frames.js:619:23)
-    at FrameDispatcher.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\frameDispatcher.js:106:103)
-    at FrameDispatcher._handleCommand (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:94:40)
-    at DispatcherConnection.dispatch (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:362:39)
-}
-Call log:
-- waiting for locator(&quot;//div[contains(text(),&apos;successfully&apos;)]&quot;) to be visible
-
-	at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:52)
-	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:120)
-	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:129)
-	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
-	at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1060)
-	at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1050)
-	at com.microsoft.playwright.impl.PageImpl.lambda$waitForSelector$92(PageImpl.java:1457)
-	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
-	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
-	at com.microsoft.playwright.impl.PageImpl.waitForSelector(PageImpl.java:1456)
-	at com.xnotify.bdd.ccl.PlayActions.waitForVisible(PlayActions.java:621)
-	at com.xnotify.bdd.web.screens.CampaignBuilderScreen.verifyCampaignCreated(CampaignBuilderScreen.java:111)
-	at com.xnotify.bdd.web.step_definitions.CampaignBuilderSteps.verifyCampaignCreated(CampaignBuilderSteps.java:77)
-	at ✽.campaign should be created successfully(file:///C:/Users/TECQNIO/Documents/GitHub/CENOMI-XNotify/src/test/java/com/xnotify/bdd/web/features/CampaignBuilder.feature:25)
-Caused by: com.microsoft.playwright.TimeoutError: Error {
-  message=&apos;Timeout 10000ms exceeded.
-  name=&apos;TimeoutError
-  stack=&apos;TimeoutError: Timeout 10000ms exceeded.
-    at ProgressController.run (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\progress.js:87:26)
-    at Frame.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\frames.js:619:23)
-    at FrameDispatcher.waitForSelector (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\frameDispatcher.js:106:103)
-    at FrameDispatcher._handleCommand (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:94:40)
-    at DispatcherConnection.dispatch (C:\Users\TECQNIO\AppData\Local\Temp\playwright-java-5046639151282186976\package\lib\server\dispatchers\dispatcher.js:362:39)
-}
-Call log:
-- waiting for locator(&quot;//div[contains(text(),&apos;successfully&apos;)]&quot;) to be visible
-
-	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:254)
-	at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:209)
-	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:118)
-	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:129)
-	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
-	at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1060)
-	at com.microsoft.playwright.impl.FrameImpl.waitForSelectorImpl(FrameImpl.java:1050)
-	at com.microsoft.playwright.impl.PageImpl.lambda$waitForSelector$92(PageImpl.java:1457)
-	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
-	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
-	at com.microsoft.playwright.impl.PageImpl.waitForSelector(PageImpl.java:1456)
-	at com.xnotify.bdd.ccl.PlayActions.waitForVisible(PlayActions.java:621)
-	at com.xnotify.bdd.web.screens.CampaignBuilderScreen.verifyCampaignCreated(CampaignBuilderScreen.java:111)
-	at com.xnotify.bdd.web.step_definitions.CampaignBuilderSteps.verifyCampaignCreated(CampaignBuilderSteps.java:77)
-	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
-	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
-	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
-	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
-	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
-	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
-	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
-	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:85)
-	at io.cucumber.core.runner.TestStep.run(TestStep.java:57)
-	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
-	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
-	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
-	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
-	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:129)
-	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
-	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:129)
-	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
-	at com.xnotify.bdd.common.runner.Playground.scenario(Playground.java:39)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 34 stack frames
-</div> <!-- stack-trace -->
-                  <em>
-(Run Cucumber Scenario)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-failed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\TECQNIO\Documents\GitHub\CENOMI-XNotify\src\test\resources\NG_XMLs\WebPlay.xml</span>
+            <span class="header-content">C:\Users\TECQNIO\Documents\GitHub\CENOMI-XNotify\src\test\resources\NG_XMLs\Api_Testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Web&quot; verbose=&quot;0&quot;&gt;
+&lt;suite thread-count=&quot;2&quot; parallel=&quot;methods&quot; name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;2&quot; parallel=&quot;methods&quot; name=&quot;API&quot; verbose=&quot;0&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.xnotify.bdd.common.runner.Playground&quot;/&gt;
+      &lt;class name=&quot;com.xnotify.bdd.common.runner.API_Runner&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Web --&gt;
+  &lt;/test&gt; &lt;!-- API --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -236,7 +129,7 @@ Call log:
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Web (1 class)</span>
+                <span class="test-name">API (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -246,14 +139,6 @@ Call log:
             <span class="header-content">Groups for Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="test-group">
-              <span class="test-group-name">cucumber</span>
-              <br/>
-              <div class="method-in-group">
-                <span class="method-in-group-name">scenario</span>
-                <br/>
-              </div> <!-- method-in-group -->
-            </div> <!-- test-group -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="times-Suite" class="panel">
@@ -270,16 +155,12 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
-data.setCell(0, 0, 0)
-data.setCell(0, 1, 'scenario')
-data.setCell(0, 2, 'com.xnotify.bdd.common.runner.Playground')
-data.setCell(0, 3, 47599);
+data.addRows(0);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 47 seconds</span>
+              <span class="suite-total-time">Total running time: 0 ms</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -305,20 +186,14 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.xnotify.bdd.common.runner.Playground</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.xnotify.bdd.common.runner.API_Runner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setUpClass</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">scenario("TC_001 Verify Welcome Series campaign using Push node", "XNotifi Campaign Builder Automation")</span>
-                <span class="method-start">962 ms</span>
-              </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">49613 ms</span>
+                <span class="method-start">797 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

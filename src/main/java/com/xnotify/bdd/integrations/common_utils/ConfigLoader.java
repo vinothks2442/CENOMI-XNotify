@@ -1,11 +1,11 @@
 
-package com.xnotify.bdd.integrations.common_utils;
+package com.XNotify.bdd.integrations.common_utils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-import com.xnotify.bdd.enums.EnvType;
+import com.XNotify.bdd.enums.EnvType;
 
 /*Singleton Design pattern*/
 public class ConfigLoader {

@@ -1,4 +1,4 @@
-package com.xnotify.bdd.api.base;
+package com.XNotify.bdd.api.base;
 
 public class TestContext {
 

@@ -5,7 +5,7 @@ import java.util.Date;
 //final -> We do not want any class to extend this class
 public final class DateUtils {
 
-    //private -> We do not want anyone to create the object of this class
+    // private -> We do not want anyone to create the object of this class
     // Private constructor to avoid external instantiation
     private DateUtils() {
     }

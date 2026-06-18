@@ -43,17 +43,17 @@ public class APIResponseValidationSteps {
 		int actualResponseCode = apiTestContext.getApiTestBase().response.statusCode();
 		System.out.println(actualResponseCode);
 		System.out.println(ExpectedStatusCode);
-        System.out.println(apiTestContext.getApiTestBase().response.asString());
-		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Actual Response Code is - </b></font></summary>" + actualResponseCode);
-        ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Expected response code is - </b></font></summary>" + ExpectedStatusCode);
-        ReportManager.logInfoAPI(apiTestContext.getApiTestBase().response.asString());
-	
-		
+		System.out.println(apiTestContext.getApiTestBase().response.asString());
+		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Actual Response Code is - </b></font></summary>"
+				+ actualResponseCode);
+		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Expected response code is - </b></font></summary>"
+				+ ExpectedStatusCode);
+		ReportManager.logInfoAPI(apiTestContext.getApiTestBase().response.asString());
 
 		Assert.assertEquals(apiTestContext.getApiTestBase().response.statusCode(), Integer.parseInt(ExpectedStatusCode),
 				"Failed in status code validation");
 	}
-	
+
 	@And("Sleep for {int} miliseconds")
 	public void sleepTimeWithVariable(int time) throws InterruptedException {
 		int t = time;
@@ -67,10 +67,13 @@ public class APIResponseValidationSteps {
 		if (ActualContentType.equals("text/html; charset=utf-8")) {
 			ActualContentType = "text/html; charset=UTF-8";
 		}
-//		ReportManager.logInfoAPI("actual content type is - " + ActualContentType);
-		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Actual content type is - </b></font></summary>" + ActualContentType);
-//		ReportManager.logInfoAPI("expected content type is - " + ExpectedContentType);
-		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Expected content type is - </b></font></summary>" + ExpectedContentType);
+		// ReportManager.logInfoAPI("actual content type is - " + ActualContentType);
+		ReportManager.logInfoAPI(
+				"<summary><font color=\"green\"><b>Actual content type is - </b></font></summary>" + ActualContentType);
+		// ReportManager.logInfoAPI("expected content type is - " +
+		// ExpectedContentType);
+		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Expected content type is - </b></font></summary>"
+				+ ExpectedContentType);
 		Assert.assertEquals(ActualContentType, ExpectedContentType, "Actual ContentType " + ActualContentType
 				+ " is not macthing with expected ContentType " + ExpectedContentType);
 	}
@@ -79,18 +82,16 @@ public class APIResponseValidationSteps {
 	public void veriFyApiResponseAtPath(DataTable dataTable) {
 		List<Map<String, String>> table = dataTable.asMaps();
 		String response = apiTestContext.getApiTestBase().response.asString();
-         System.out.println(response);
+		System.out.println(response);
 		for (int row = 0; row < table.size(); row++) {
 
-				JsonAssertions.assertThatJson(inPath(response, table.get(row).get("JPath")))
-						.when(Option.IGNORING_ARRAY_ORDER).isEqualTo(table.get(row).get("Value"));
-				ReportManager.logInfoAPI(table.get(row).get("JPath") + " - " + table.get(row).get("Value"));
-				
-											
-			}
+			JsonAssertions.assertThatJson(inPath(response, table.get(row).get("JPath")))
+					.when(Option.IGNORING_ARRAY_ORDER).isEqualTo(table.get(row).get("Value"));
+			ReportManager.logInfoAPI(table.get(row).get("JPath") + " - " + table.get(row).get("Value"));
 
 		}
 
+	}
 
 	/*
 	 * Validate the response fields matches the expected value from Cucumber data
@@ -225,8 +226,10 @@ public class APIResponseValidationSteps {
 					+ " milliseconds and actual time is: " + apiTestContext.getApiTestBase().response.time());
 
 		}
-//		ReportManager.logInfoAPI("Response time is - " + apiTestContext.getApiTestBase().response.time());
-		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Response time is - </b></font></summary>" + apiTestContext.getApiTestBase().response.time());
+		// ReportManager.logInfoAPI("Response time is - " +
+		// apiTestContext.getApiTestBase().response.time());
+		ReportManager.logInfoAPI("<summary><font color=\"green\"><b>Response time is - </b></font></summary>"
+				+ apiTestContext.getApiTestBase().response.time());
 	}
 
 	@And("verify response headers")
@@ -279,23 +282,22 @@ public class APIResponseValidationSteps {
 		apiTestContext.getApiTestBase().contextMap = contextMap;
 	}
 
-//	--------------------------------------------------------------
-	
+	// --------------------------------------------------------------
+
 	@Then("I should see the response size as {string}")
 	public void i_should_see_the_response_size_as(String ExpectedResponsesize) throws Throwable {
 		byte[] actualResponseSize = apiTestContext.getApiTestBase().response.asByteArray();
-		
+
 		System.out.println(actualResponseSize.length);
 		System.out.println(actualResponseSize);
 	}
 
-	//cookie storing in variable - cookie setting using variable
+	// cookie storing in variable - cookie setting using variable
 	@And("I store the sign_in cookies")
 	public void cookieStoringSigin() {
-		
-			signInCookie = apiTestContext.getApiTestBase().response.cookies();
-		
+
+		signInCookie = apiTestContext.getApiTestBase().response.cookies();
+
 	}
-	
 
 }

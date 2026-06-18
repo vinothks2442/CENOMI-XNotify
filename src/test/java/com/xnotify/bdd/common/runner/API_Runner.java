@@ -16,10 +16,10 @@ import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
 
 @Listeners({ SuiteEvent.class, APIEvent.class })
-@CucumberOptions(features = { "src/test/java/com/Gypsee/bdd/api/features" }, glue = {
-		"com/Gypsee/bdd/api/step_definitions", "com/Gypsee/bdd/common/hooks" },
-         tags = "@GypseeAPI",plugin = { "pretty", "json:target/cucumber/cucumber.json", "html:target/site/cucumber-pretty/cucumber_API.html",
-				"rerun:target/api_rerun.txt"},monochrome = true, publish = true, dryRun = false)
+@CucumberOptions(features = { "src/test/java/com/xnotify/bdd/api/features" }, glue = {
+		"com/xnotify/bdd/api/step_definitions", "com/xnotify/bdd/common/hooks" }, tags = "@XnotifyAPI", plugin = {
+				"pretty", "json:target/cucumber/cucumber.json", "html:target/site/cucumber-pretty/cucumber_API.html",
+				"rerun:target/api_rerun.txt" }, monochrome = true, publish = true, dryRun = false)
 public class API_Runner {
 
 	private TestNGCucumberRunner testNGCucumberRunner;
@@ -35,7 +35,7 @@ public class API_Runner {
 		testNGCucumberRunner.runScenario(pickleEventWrapper.getPickle());
 	}
 
-	@DataProvider(parallel = true )
+	@DataProvider(parallel = true)
 	public Object[][] scenarios() {
 		System.out.println("@Data provider");
 		if (testNGCucumberRunner == null) {

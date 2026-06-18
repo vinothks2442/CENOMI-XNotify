@@ -1,4 +1,4 @@
-package com.xnotify.bdd.enums;
+package com.XNotify.bdd.enums;
 
 public enum EnvType {
 

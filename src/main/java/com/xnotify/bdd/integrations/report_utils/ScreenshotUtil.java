@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.report_utils;
+package com.XNotify.bdd.integrations.report_utils;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import com.XNotify.bdd.integrations.common_utils.BrowserFactory;
 import com.microsoft.playwright.Page;
-import com.xnotify.bdd.integrations.common_utils.BrowserFactory;
 
 public class ScreenshotUtil {
 

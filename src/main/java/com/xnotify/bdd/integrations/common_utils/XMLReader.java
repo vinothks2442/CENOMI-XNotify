@@ -1,4 +1,4 @@
-package com.xnotify.bdd.integrations.common_utils;
+package com.XNotify.bdd.integrations.common_utils;
 
 import javax.xml.parsers.DocumentBuilder;
 
@@ -10,7 +10,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import com.xnotify.bdd.integrations.report_utils.ReportManager;
+import com.XNotify.bdd.integrations.report_utils.ReportManager;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
