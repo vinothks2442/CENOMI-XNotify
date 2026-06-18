@@ -26,7 +26,7 @@ import io.cucumber.java.en.When;
 public class GetSteps {
 
 	private TestContext apiTestContext;
-    
+
 	public GetSteps(TestContext apiTestContext) {
 		this.apiTestContext = apiTestContext;
 	}
@@ -69,7 +69,7 @@ public class GetSteps {
 		apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
 		apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification,
 				pathParams, apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()));
-//        ReportManager.logInfoAPI(LocalDateTime.now().toString());
+		// ReportManager.logInfoAPI(LocalDateTime.now().toString());
 
 	}
 
@@ -261,18 +261,18 @@ public class GetSteps {
 				request, apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()),
 				pathParams);
 
-//        ReportManager.logInfoAPI(LocalDateTime.now().toString());
+		// ReportManager.logInfoAPI(LocalDateTime.now().toString());
 
 	}
 
 	@And("I hit the Get request to {string} endpoint with query parameters in chain value")
 	public void getReqWithQueryChainValue(String fileName, DataTable dataTable) throws InterruptedException {
-		
+
 		List<Map<String, String>> table = dataTable.asMaps();
 		Map<String, Object> queryParams = new HashMap<String, Object>();
 		for (int i = 0; i < table.size(); i++) {
 			queryParams.put(table.get(i).get("QueryParamName"), ApiRequestModificationSteps.quote_id);
-			System.out.println("the value for quote id is- " +ApiRequestModificationSteps.quote_id);
+			System.out.println("the value for quote id is- " + ApiRequestModificationSteps.quote_id);
 		}
 		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.REQUEST_NAME.name(), fileName);
 		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.RESOURCE_URI.name(),
@@ -280,7 +280,7 @@ public class GetSteps {
 
 		apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
 		apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification,
-				 apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()),queryParams);
+				apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()), queryParams);
 		ReportManager.logInfoAPI(LocalDateTime.now().toString());
 		System.out.println("Get request response: " + apiTestContext.getApiTestBase().response.asString());
 	}
@@ -295,7 +295,7 @@ public class GetSteps {
 		String responseBody;
 		try {
 			responseBody = JsonPath.using(configuration).parse(responseFile).jsonString();
-//			System.out.println(responseBody);
+			// System.out.println(responseBody);
 			Map<String, Object> contextMap = new HashMap<String, Object>();
 			for (String path : jPaths.split(";")) {
 				String key = path.substring(path.lastIndexOf(".") + 1, path.length());
@@ -326,9 +326,9 @@ public class GetSteps {
 		ReportManager.logInfoAPI(LocalDateTime.now().toString());
 		System.out.println("Get request response: " + apiTestContext.getApiTestBase().response.asString());
 	}
-	
-	//jpath value in query parameter - Nagalakshmi
-	
+
+	// jpath value in query parameter - Nagalakshmi
+
 	@When("I send get request with {string} requestname and {string} jpath value as query parameter from  {string} response file")
 	public void getwithPayloadWithChaindataQueryParameter(String fileName, String jPaths, String responseFileName,
 			DataTable dataTable) {
@@ -339,7 +339,7 @@ public class GetSteps {
 		String responseBody;
 		try {
 			responseBody = JsonPath.using(configuration).parse(responseFile).jsonString();
-//			System.out.println(responseBody);
+			// System.out.println(responseBody);
 			Map<String, Object> contextMap = new HashMap<String, Object>();
 			for (String path : jPaths.split(";")) {
 				String key = path.substring(path.lastIndexOf(".") + 1, path.length());
@@ -366,99 +366,101 @@ public class GetSteps {
 
 		apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
 		apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification,
-				apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()),queryParams);
+				apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()), queryParams);
 		ReportManager.logInfoAPI(LocalDateTime.now().toString());
 		System.out.println("Get request response: " + apiTestContext.getApiTestBase().response.asString());
 	}
-	
+
 	@When("I send get request with {string} requestname and {string} jpath value from {string} response file and {string} jpath value from {string} response file")
-	public void getwithPayloadWithChaindata1(String fileName,String path, String fileName0,String path1, String fileName1) {
+	public void getwithPayloadWithChaindata1(String fileName, String path, String fileName0, String path1,
+			String fileName1) {
 		Configuration configuration = Configuration.builder().options(Option.SUPPRESS_EXCEPTIONS).build();
 		Map<String, Object> pathParams = new HashMap<String, Object>();
-		
+
 		File json = new File("./ResponseStore/" + fileName0 + ".json");
 		String responseBody;
-		
+
 		try {
 			responseBody = JsonPath.using(configuration).parse(json).jsonString();
-			String quote_idValue=String.valueOf(JsonUtils.getJSonObjectValue(responseBody, path));
-			System.out.println("Value is " +quote_idValue); // Constants.ResponseData=
+			String quote_idValue = String.valueOf(JsonUtils.getJSonObjectValue(responseBody, path));
+			System.out.println("Value is " + quote_idValue); // Constants.ResponseData=
 			pathParams.put("session_token", quote_idValue);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-	File json1 = new File("./ResponseStore/" + fileName1 + ".json");
-	String responseBody1;
-	try {
-		responseBody1 = JsonPath.using(configuration).parse(json1).jsonString();
-		String otpValue=String.valueOf(JsonUtils.getJSonObjectValue(responseBody1, path1));
-		System.out.println("Value is " +otpValue); // Constants.ResponseData=
-		pathParams.put("otp", otpValue);
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	
-	apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.REQUEST_NAME.name(), fileName);
-	apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.RESOURCE_URI.name(),
-			ResourceURIS.getResourceURI(fileName));
+		}
+		File json1 = new File("./ResponseStore/" + fileName1 + ".json");
+		String responseBody1;
+		try {
+			responseBody1 = JsonPath.using(configuration).parse(json1).jsonString();
+			String otpValue = String.valueOf(JsonUtils.getJSonObjectValue(responseBody1, path1));
+			System.out.println("Value is " + otpValue); // Constants.ResponseData=
+			pathParams.put("otp", otpValue);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
-apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification,
-		pathParams, apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()));
-ReportManager.logInfoAPI(LocalDateTime.now().toString());
-//System.out.println("Get request response: "+apiTestContext.getApiTestBase().response.prettyPrint());
-ReportManager.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view Response</b></font></summary><p><pre>"+apiTestContext.getApiTestBase().response.prettyPrint()+"</pre></script></p></details>");
-	
-	
-	
+		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.REQUEST_NAME.name(), fileName);
+		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.RESOURCE_URI.name(),
+				ResourceURIS.getResourceURI(fileName));
+
+		apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
+		apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification,
+				pathParams, apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()));
+		ReportManager.logInfoAPI(LocalDateTime.now().toString());
+		// System.out.println("Get request response:
+		// "+apiTestContext.getApiTestBase().response.prettyPrint());
+		ReportManager.logInfoAPI(
+				"<details><summary><font color=\"green\"><b>Click to view Response</b></font></summary><p><pre>"
+						+ apiTestContext.getApiTestBase().response.prettyPrint() + "</pre></script></p></details>");
+
 	}
-	
+
 	@When("I send get request with {string} requestname and {string} jpath value from {string} response file and {string} jpath value from {string} response file as query parameter")
-	public void getwithPayloadWithChaindataforQueryParams(String fileName,String path, String fileName0,String path1, String fileName1) {
+	public void getwithPayloadWithChaindataforQueryParams(String fileName, String path, String fileName0, String path1,
+			String fileName1) {
 		Configuration configuration = Configuration.builder().options(Option.SUPPRESS_EXCEPTIONS).build();
 		Map<String, Object> queryParams = new HashMap<String, Object>();
-		
+
 		File json = new File("./ResponseStore/" + fileName0 + ".json");
 		String responseBody;
-		
+
 		try {
 			responseBody = JsonPath.using(configuration).parse(json).jsonString();
-			String otpValue=String.valueOf(JsonUtils.getJSonObjectValue(responseBody, path));
-			System.out.println("Value is " +otpValue); // Constants.ResponseData=
+			String otpValue = String.valueOf(JsonUtils.getJSonObjectValue(responseBody, path));
+			System.out.println("Value is " + otpValue); // Constants.ResponseData=
 			queryParams.put("otp", otpValue);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-	File json1 = new File("./ResponseStore/" + fileName1 + ".json");
-	String responseBody1;
-	try {
-		responseBody1 = JsonPath.using(configuration).parse(json1).jsonString();
-		String quote_idValue=String.valueOf(JsonUtils.getJSonObjectValue(responseBody1, path1));
-		System.out.println("Value is " +quote_idValue); // Constants.ResponseData=
-		queryParams.put("session_token", quote_idValue);
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	
-	apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.REQUEST_NAME.name(), fileName);
-	apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.RESOURCE_URI.name(),
-			ResourceURIS.getResourceURI(fileName));
+		}
+		File json1 = new File("./ResponseStore/" + fileName1 + ".json");
+		String responseBody1;
+		try {
+			responseBody1 = JsonPath.using(configuration).parse(json1).jsonString();
+			String quote_idValue = String.valueOf(JsonUtils.getJSonObjectValue(responseBody1, path1));
+			System.out.println("Value is " + quote_idValue); // Constants.ResponseData=
+			queryParams.put("session_token", quote_idValue);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
-apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification, apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()),queryParams);
-ReportManager.logInfoAPI(LocalDateTime.now().toString());
-//System.out.println("Get request response: "+apiTestContext.getApiTestBase().response.prettyPrint());
-ReportManager.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view Response</b></font></summary><p><pre>"+apiTestContext.getApiTestBase().response.prettyPrint()+"</pre></script></p></details>");
-	
-	
-	
-	}
+		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.REQUEST_NAME.name(), fileName);
+		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.RESOURCE_URI.name(),
+				ResourceURIS.getResourceURI(fileName));
 
+		apiTestContext.getApiTestBase().specification.baseUri(RestAssuredUtils.baseURI);
+		apiTestContext.getApiTestBase().response = RestAssuredUtils.get(apiTestContext.getApiTestBase().specification,
+				apiTestContext.getApiTestBase().requestMap.get(WS_PayloadsHeaders.RESOURCE_URI.name()), queryParams);
+		ReportManager.logInfoAPI(LocalDateTime.now().toString());
+		// System.out.println("Get request response:
+		// "+apiTestContext.getApiTestBase().response.prettyPrint());
+		ReportManager.logInfoAPI(
+				"<details><summary><font color=\"green\"><b>Click to view Response</b></font></summary><p><pre>"
+						+ apiTestContext.getApiTestBase().response.prettyPrint() + "</pre></script></p></details>");
+
+	}
 
 }

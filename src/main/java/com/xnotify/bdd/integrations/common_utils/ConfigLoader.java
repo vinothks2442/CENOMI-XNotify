@@ -21,7 +21,7 @@ public class ConfigLoader {
 	private static final String BASE_URL = "baseUrl";
 	private static final String REQUEST_DETAILS_IN_REPORTS = "request_details_in_reports";
 	private static final String Execution_type = "Execution_type";
- 
+
 	private static final String ENV = "env";
 	private static final String CONFIG_PROPERTIES = "_config.properties";
 
@@ -47,27 +47,27 @@ public class ConfigLoader {
 		String env = System.getProperty(ENV, EnvType.STAGE.toString());
 
 		switch (EnvType.valueOf(env)) {
-		/* Only STAGE is working, Rest are taken for example */
+			/* Only STAGE is working, Rest are taken for example */
 
-		case STAGE: {
-			properties = getConfigPropertyFile(STG_CONFIG_PROPERTIES);
-			break;
-		}
-		case INT: {
-			properties = getConfigPropertyFile(INT_CONFIG_PROPERTIES);
-			break;
-		}
-		case QA: {
-			properties = getConfigPropertyFile(QA_CONFIG_PROPERTIES);
-			break;
-		}
-		case PRODUCTION: {
-			properties = getConfigPropertyFile(PROD_CONFIG_PROPERTIES);
-			break;
-		}
-		default: {
-			throw new IllegalStateException("Invalid EnvType: " + env);
-		}
+			case STAGE: {
+				properties = getConfigPropertyFile(STG_CONFIG_PROPERTIES);
+				break;
+			}
+			case INT: {
+				properties = getConfigPropertyFile(INT_CONFIG_PROPERTIES);
+				break;
+			}
+			case QA: {
+				properties = getConfigPropertyFile(QA_CONFIG_PROPERTIES);
+				break;
+			}
+			case PRODUCTION: {
+				properties = getConfigPropertyFile(PROD_CONFIG_PROPERTIES);
+				break;
+			}
+			default: {
+				throw new IllegalStateException("Invalid EnvType: " + env);
+			}
 		}
 	}
 
@@ -90,6 +90,7 @@ public class ConfigLoader {
 		}
 		return configLoader;
 	}
+
 	public static Properties loadPropertyFile(String filePath) {
 		// Read from properties file
 		File file = new File(filePath);
@@ -146,14 +147,15 @@ public class ConfigLoader {
 	public String getRequestDetailsInReports() {
 		return getPropertyValue(REQUEST_DETAILS_IN_REPORTS);
 	}
+
 	public static String getValue(String key) {
 
 		Properties prop = loadPropertyFile("src/test/resources/Configs/config.properties");
 
 		return prop.getProperty(key);
 	}
-	public  String executetype()
-	{
+
+	public String executetype() {
 		return getPropertyValue(Execution_type);
 	}
 

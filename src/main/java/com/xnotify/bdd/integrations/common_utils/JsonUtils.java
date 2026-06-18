@@ -16,7 +16,6 @@ import javax.json.JsonPointer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
@@ -40,9 +39,9 @@ public class JsonUtils {
 		try {
 
 			if (mobileExecutionType.equalsIgnoreCase("ios")) {
-				 locatorFile = "./src/test/resources/Locators/ios_Locators.json";
+				locatorFile = "./src/test/resources/Locators/ios_Locators.json";
 			} else {
-				 locatorFile = "./src/test/resources/Locators/Gypsee_Locators.json";
+				locatorFile = "./src/test/resources/Locators/Gypsee_Locators.json";
 			}
 			String fileString = new String(Files.readAllBytes(Paths.get(locatorFile)), StandardCharsets.UTF_8);
 			JSONObject parentNode = new JSONObject(fileString);
@@ -88,40 +87,38 @@ public class JsonUtils {
 	public String getValueForSerenityProperties(String propertyName) {
 		return SystemEnvironmentVariables.createEnvironmentVariables().getProperty(propertyName);
 	}
-	public static String updateJsonField(String jsonString, String pointer, Object value) {		
+
+	public static String updateJsonField(String jsonString, String pointer, Object value) {
 		if (String.valueOf(jsonString).startsWith("{")
 				&& String.valueOf(jsonString).endsWith("}")) {
 			if (String.valueOf(value).startsWith("{")
 					&& String.valueOf(value).endsWith("}")) {
 				JsonObject object = Json.createReader(new StringReader(jsonString)).readObject();
-		        JsonPointer activePointer = Json.createPointer(pointer);
-		        object = activePointer.add(object, Json.createReader(new StringReader((String) value)).readObject());
-		        return object.toString();
-			}
-			else {
+				JsonPointer activePointer = Json.createPointer(pointer);
+				object = activePointer.add(object, Json.createReader(new StringReader((String) value)).readObject());
+				return object.toString();
+			} else {
 				JsonObject object = Json.createReader(new StringReader(jsonString)).readObject();
-		        JsonPointer activePointer = Json.createPointer(pointer);
-		        object = activePointer.add(object, Json.createReader(new StringReader((String) value)).readArray());
-		        return object.toString();
+				JsonPointer activePointer = Json.createPointer(pointer);
+				object = activePointer.add(object, Json.createReader(new StringReader((String) value)).readArray());
+				return object.toString();
 			}
-		}else {
+		} else {
 			if (String.valueOf(value).startsWith("{")
 					&& String.valueOf(value).endsWith("}")) {
 				JsonArray array = Json.createReader(new StringReader(jsonString)).readArray();
-		        JsonPointer activePointer = Json.createPointer(pointer);
-		        array = activePointer.add(array, Json.createReader(new StringReader((String) value)).readObject());
-		        return array.toString();
-			}
-			else {
+				JsonPointer activePointer = Json.createPointer(pointer);
+				array = activePointer.add(array, Json.createReader(new StringReader((String) value)).readObject());
+				return array.toString();
+			} else {
 				JsonArray array = Json.createReader(new StringReader(jsonString)).readArray();
-		        JsonPointer activePointer = Json.createPointer(pointer);
-		        array = activePointer.add(array, Json.createReader(new StringReader((String) value)).readArray());
-		        return array.toString();
+				JsonPointer activePointer = Json.createPointer(pointer);
+				array = activePointer.add(array, Json.createReader(new StringReader((String) value)).readArray());
+				return array.toString();
 			}
 		}
-			
-	}
 
+	}
 
 	public String readJsonFile(String keyFromJSON) {
 
@@ -135,6 +132,7 @@ public class JsonUtils {
 			return valuefromjson;
 		}
 	}
+
 	public static String ModifyJSON(String jsonString, String jPath, Object newValue) {
 		Configuration conf = Configuration.defaultConfiguration().addOptions(Option.SUPPRESS_EXCEPTIONS);
 		DocumentContext documentContext = JsonPath.using(conf).parse(jsonString);
@@ -203,12 +201,12 @@ public class JsonUtils {
 
 		}
 	}
+
 	public static Object getJSonObjectValue(String jsonString, String jPath) {
 		Configuration conf = Configuration.defaultConfiguration().addOptions(Option.SUPPRESS_EXCEPTIONS);
 		Object value = JsonPath.using(conf).parse(jsonString).read(jPath);
 		return value;
 	}
-
 
 	public void listPrimitive(String parent, Object obj) {
 		JsonUtils.tempHashmap.put(parent, String.valueOf(obj));

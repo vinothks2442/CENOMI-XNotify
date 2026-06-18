@@ -17,9 +17,9 @@ import io.cucumber.testng.TestNGCucumberRunner;
 
 @Listeners({ SuiteEvent.class, APIEvent.class })
 @CucumberOptions(features = { "rerun:target/api_rerun.txt" }, glue = {
-		"com/Gypsee/bdd/api/step_definitions", "com/Gypsee/bdd/common/hooks" },
-         tags = "@smoke",plugin = {  "pretty", "json:target/cucumber/cucumber.json", "html:target/site/cucumber-pretty/cucumber_API.html"
- 				 },monochrome = true, publish = true, dryRun = false)
+		"com/Gypsee/bdd/api/step_definitions", "com/Gypsee/bdd/common/hooks" }, tags = "@smoke", plugin = { "pretty",
+				"json:target/cucumber/cucumber.json", "html:target/site/cucumber-pretty/cucumber_API.html"
+		}, monochrome = true, publish = true, dryRun = false)
 public class API_FailedRunner {
 
 	private TestNGCucumberRunner testNGCucumberRunner;

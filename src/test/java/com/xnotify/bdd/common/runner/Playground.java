@@ -19,7 +19,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 
 @CucumberOptions(features = { "src/test/java/com/xnotify/bdd/web/features" }, glue = {
 		"com/xnotify/bdd/common/hooks",
-		"com/xnotify/bdd/web/step_definitions" }, tags = "@WelcomeSeries_PushBasic", plugin = {
+		"com/xnotify/bdd/web/step_definitions" }, tags = "@TeamManagement", plugin = {
 				"pretty", "html:target/site/cucumber-pretty/cucumberPlay.html", "json:target/cucumber/cucumber.json",
 				"rerun:target/web_rerun.txt",
 		}, monochrome = true, publish = true, dryRun = false)

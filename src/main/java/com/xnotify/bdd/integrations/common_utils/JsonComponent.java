@@ -9,20 +9,20 @@ import org.apache.commons.io.IOUtils;
 public class JsonComponent {
 
 	// Verifies whether files are exists in repective path
-			public static boolean fileExists(String filePath) {
-				File f = new File(filePath);
-				return f.exists();
-			}
-		// Reads the json file - Requesting for the body
-		public static String readTextFile(String filePath) throws IOException {
+	public static boolean fileExists(String filePath) {
+		File f = new File(filePath);
+		return f.exists();
+	}
 
-			if (!fileExists(filePath))
-				return "";
-			FileInputStream inputStream = new FileInputStream(filePath);
-			String sTemp = IOUtils.toString(inputStream);
-			inputStream.close();
-			return sTemp.replace("&amp;", "&");
-		}
-	
-	
+	// Reads the json file - Requesting for the body
+	public static String readTextFile(String filePath) throws IOException {
+
+		if (!fileExists(filePath))
+			return "";
+		FileInputStream inputStream = new FileInputStream(filePath);
+		String sTemp = IOUtils.toString(inputStream);
+		inputStream.close();
+		return sTemp.replace("&amp;", "&");
+	}
+
 }

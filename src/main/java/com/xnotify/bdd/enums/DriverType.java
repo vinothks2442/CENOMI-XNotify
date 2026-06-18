@@ -7,7 +7,5 @@ public enum DriverType {
 	EDGE,
 	SAFARI,
 	OPERA;
-	
-	
-}
 
+}

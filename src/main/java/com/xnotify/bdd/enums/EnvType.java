@@ -6,7 +6,5 @@ public enum EnvType {
 	STAGE,
 	INT,
 	QA,
-	
-	
-}
 
+}

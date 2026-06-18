@@ -20,7 +20,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 @CucumberOptions(features = { "@target/web_rerun.txt" }, glue = {
 		"com/Gypsee/bdd/common/hooks", "com/Gypsee/bdd/web/step_definitions" }, tags = "@", plugin = {
 				"pretty", "html:target/site/cucumber-pretty/cucumber.html", "json:target/cucumber/cucumber.json",
-				 }, monochrome = true, publish = true, dryRun = false)
+		}, monochrome = true, publish = true, dryRun = false)
 
 public class FailedPlayground {
 

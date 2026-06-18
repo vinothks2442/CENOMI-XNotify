@@ -26,6 +26,7 @@ import com.xnotify.bdd.integrations.common_utils.MobileUtil;
 import com.xnotify.bdd.integrations.report_utils.ReportManager;
 
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
@@ -33,7 +34,6 @@ import io.appium.java_client.touch.offset.PointOption;
 public class MobileActions {
 
 	Actions action = new Actions(DriverFactory.getInstance().getMobileDriver());
-
 
 	@SuppressWarnings("deprecation")
 	public WebElement waitForVisible(By locator) {
@@ -68,12 +68,10 @@ public class MobileActions {
 		// LogClass.loginfo("Successfully clicked on -"+ info);
 	}
 
-
 	public boolean isDisplayed(By locator) throws InterruptedException {
 		boolean eleSelected = DriverFactory.getInstance().getMobileDriver().findElements(locator).size() > 0;
 		return eleSelected;
 	}
-
 
 	public void verifyText(String actualText, String expectedText) {
 		ReportManager.logInfo("Actual Text - " + " <b style=\"color:green;\"> : " + actualText + "</b>");
@@ -82,7 +80,6 @@ public class MobileActions {
 		System.out.println("Expected Text - " + expectedText);
 		assertEquals(actualText, expectedText);
 	}
-
 
 	public static void VerifyText(String actualText, String expectedText) {
 		if (actualText.contains(expectedText)) {
@@ -120,7 +117,7 @@ public class MobileActions {
 		elm.click();
 		elm.sendKeys(text);
 		ReportManager.logInfo(info + " <b style=\"color:green;\"> : " + text + "</b>");
-		ReportManager.logInfo("Successfully Entered text - " +"<b style=\"color:green;\">" + text + "</b>");
+		ReportManager.logInfo("Successfully Entered text - " + "<b style=\"color:green;\">" + text + "</b>");
 		System.out.println("Successfully Entered text - " + text);
 		// LogClass.loginfo(info+" :"+text);
 	}
@@ -139,7 +136,7 @@ public class MobileActions {
 		elm.clear();
 		elm.sendKeys(text);
 		ReportManager.logInfo(info + "<b style=\"color:green;\"> :" + text + "</b>");
-		
+
 		// LogClass.loginfo(info+" : " + text);
 	}
 
@@ -273,7 +270,8 @@ public class MobileActions {
 			// print error or something
 		}
 	}
-	public void swipeUp_FindElementClick(int howManySwipes, By locator ,String info) throws InterruptedException {
+
+	public void swipeUp_FindElementClick(int howManySwipes, By locator, String info) throws InterruptedException {
 		Dimension size = DriverFactory.getInstance().getMobileDriver().manage().window().getSize();
 		// calculate coordinates for vertical swipe
 		int startY = (int) (size.height * 0.70);
@@ -285,7 +283,8 @@ public class MobileActions {
 				boolean isElmPresent = DriverFactory.getInstance().getMobileDriver().findElements(locator).size() > 0;
 				if (isElmPresent) {
 					DriverFactory.getInstance().getMobileDriver().findElement(locator).click();
-					ReportManager.logInfo("Successfully clicked on - " + " <b style=\"color:green;\"> : " + info + "</b>");
+					ReportManager
+							.logInfo("Successfully clicked on - " + " <b style=\"color:green;\"> : " + info + "</b>");
 					System.out.println("Successfully clicked on - " + info);
 					break;
 				}
@@ -298,7 +297,6 @@ public class MobileActions {
 			// print error or something
 		}
 	}
-	
 
 	public void swipeUp_FindElement(int howManySwipes, By locator) throws InterruptedException {
 		Dimension size = DriverFactory.getInstance().getMobileDriver().manage().window().getSize();
@@ -323,7 +321,7 @@ public class MobileActions {
 			// print error or something
 		}
 	}
-	
+
 	public String swipeUp_FindElementGetText(int howManySwipes, By locator) throws InterruptedException {
 		Dimension size = DriverFactory.getInstance().getMobileDriver().manage().window().getSize();
 		// calculate coordinates for vertical swipe
@@ -346,10 +344,11 @@ public class MobileActions {
 						.longPress(PointOption.point(startX, startY)).moveTo(PointOption.point(startX, endY)).release()
 						.perform();
 				System.out.println("swipeUp");
-//				if (isElmPresent) {
-//					text = DriverFactory.getInstance().getMobileDriver().findElement(locator).getText();
-//					break;
-//				}
+				// if (isElmPresent) {
+				// text =
+				// DriverFactory.getInstance().getMobileDriver().findElement(locator).getText();
+				// break;
+				// }
 
 			}
 		} catch (Exception e) {
@@ -358,8 +357,6 @@ public class MobileActions {
 		return text;
 	}
 
-	
-	
 	public void pressKeyboardValues(Keys value) throws InterruptedException {
 		action.sendKeys(value).build().perform();
 		ReportManager
@@ -379,8 +376,6 @@ public class MobileActions {
 
 	}
 
-	
-	
 	public void rightToLeftSwipeUsingWebElement(WebElement fromLocator, WebElement toLocator)
 			throws InterruptedException {
 		System.out.println(" swip element");
@@ -434,13 +429,16 @@ public class MobileActions {
 	}
 
 	public void longpressactions(By locator) throws Exception {
-//		new TouchAction(DriverFactory.getInstance().getMobileDriver()).longPress(new LongPressOptions()
-//		.withElement(ElementOption.element(mWebElement)).withDuration(Duration.ofMillis(100000))).release()
-//		.perform();
+		// new TouchAction(DriverFactory.getInstance().getMobileDriver()).longPress(new
+		// LongPressOptions()
+		// .withElement(ElementOption.element(mWebElement)).withDuration(Duration.ofMillis(100000))).release()
+		// .perform();
 
-//		WebElement mWebElement = DriverFactory.getInstance().getMobileDriver().findElement(locator);
-//		new TouchAction(LocalDriverManager.getAppiumDriver()).longPress(new PointOption().point(x,y)).waitAction(WaitOptions.waitoptions(Duration.ofSeconds(3))).release().perform();
-//		TimeUnit.SECONDS.sleep(1);
+		// WebElement mWebElement =
+		// DriverFactory.getInstance().getMobileDriver().findElement(locator);
+		// new TouchAction(LocalDriverManager.getAppiumDriver()).longPress(new
+		// PointOption().point(x,y)).waitAction(WaitOptions.waitoptions(Duration.ofSeconds(3))).release().perform();
+		// TimeUnit.SECONDS.sleep(1);
 
 		WebElement mWebElement = DriverFactory.getInstance().getMobileDriver().findElement(locator);
 
@@ -448,9 +446,10 @@ public class MobileActions {
 				.longPress(new ElementOption().withElement(mWebElement))
 				.waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000))).release().perform();
 		Thread.sleep(3000);
-//		new TouchAction(DriverFactory.getInstance().getMobileDriver()).longPress(new ElementOption().withElement(mWebElement))
-//		.release().perform();
-//		Thread.sleep(3000);
+		// new TouchAction(DriverFactory.getInstance().getMobileDriver()).longPress(new
+		// ElementOption().withElement(mWebElement))
+		// .release().perform();
+		// Thread.sleep(3000);
 
 	}
 
@@ -486,57 +485,65 @@ public class MobileActions {
 		ReportManager.logInfo("Successfully Cleared text -<b style=\"color:green;\"> " + text + "</b>");
 		elm.clear();
 	}
-	
-	public String getElementTextUsingFindElements(int iteratorStarted ,int iteratorEnded ,By locator) throws InterruptedException {
-		String lst_ElmText="";
+
+	public String getElementTextUsingFindElements(int iteratorStarted, int iteratorEnded, By locator)
+			throws InterruptedException {
+		String lst_ElmText = "";
 		List<WebElement> lst_Elm = DriverFactory.getInstance().getMobileDriver().findElements(locator);
-//		ReportManager.logInfoMobile("Successfully captured elemnt size is - " + lst_Elm.size());
-		for (int iterator = iteratorStarted; iterator < lst_Elm.size()-iteratorEnded; iterator++) {
-			String lst_ElmgetText =lst_Elm.get(iterator).getText();
-//			lst_ElmText = lst_ElmText+"\n"+lst_ElmgetText;
-			
+		// ReportManager.logInfoMobile("Successfully captured elemnt size is - " +
+		// lst_Elm.size());
+		for (int iterator = iteratorStarted; iterator < lst_Elm.size() - iteratorEnded; iterator++) {
+			String lst_ElmgetText = lst_Elm.get(iterator).getText();
+			// lst_ElmText = lst_ElmText+"\n"+lst_ElmgetText;
+
 			System.out.println("Successfully get text - " + lst_Elm.get(iterator).getText());
 			ReportManager.logInfo("Successfully get text -<b style=\"color:green;\"> " + lst_ElmgetText + "</b>");
 		}
-		
+
 		return lst_ElmText;
 	}
+
 	public void getToastMessage() {
 		try {
-//			mobileActions.waitForVisible(By.xpath("//android.widget.Toast"));
-        String toast = DriverFactory.getInstance().getMobileDriver().findElement(By.xpath("//android.widget.Toast")).getText();
-        System.out.println("The Toast Message is : "+ toast);
-        ReportManager.logInfo("Successfully get Toast Message text -<b style=\"color:green;\"> " + toast + "</b>");
-		}catch (Exception e) {
+			// mobileActions.waitForVisible(By.xpath("//android.widget.Toast"));
+			String toast = DriverFactory.getInstance().getMobileDriver().findElement(By.xpath("//android.widget.Toast"))
+					.getText();
+			System.out.println("The Toast Message is : " + toast);
+			ReportManager.logInfo("Successfully get Toast Message text -<b style=\"color:green;\"> " + toast + "</b>");
+		} catch (Exception e) {
 			System.out.println();
 		}
 
-    }
+	}
+
 	public void SwipeByCoordinates(int startX, int startY, int endX, int endY) throws InterruptedException {
 		new TouchAction(DriverFactory.getInstance().getMobileDriver()).press(point(startX, startY))
 				.waitAction(waitOptions(ofMillis(1000))).moveTo(point(endX, endY)).release().perform();
 	}
-	
+
 	public void navigatesbackUsingFindElement(By locator) throws InterruptedException {
 		Thread.sleep(1000);
 		try {
-				boolean isElmPresent = DriverFactory.getInstance().getMobileDriver().findElements(locator).size() > 0;
-				if (isElmPresent) {
-					DriverFactory.getInstance().getMobileDriver().navigate().back();
-				}
-			
+			boolean isElmPresent = DriverFactory.getInstance().getMobileDriver().findElements(locator).size() > 0;
+			if (isElmPresent) {
+				DriverFactory.getInstance().getMobileDriver().navigate().back();
+			}
+
 		} catch (Exception e) {
 			// print error or something
 		}
 	}
+
 	public void CloseAPP(String terminateApp) {
 		DriverFactory.getInstance().getMobileDriver().terminateApp(terminateApp);
-//		 System.out.println("---Close App---");
+		// System.out.println("---Close App---");
 	}
+
 	public void OpenAPP(String activateApp) {
 		DriverFactory.getInstance().getMobileDriver().activateApp(activateApp);
-//	     System.out.println("---Open App---");
+		// System.out.println("---Open App---");
 	}
+
 	public void swipeDown_FindElement(int howManySwipes, By locator) throws InterruptedException {
 		Dimension size = DriverFactory.getInstance().getMobileDriver().manage().window().getSize();
 		// calculate coordinates for vertical swipe
@@ -560,23 +567,38 @@ public class MobileActions {
 			// print error or something
 		}
 	}
-	public void clicksAgainManyClicks(int howMany, By locatorNextScreen,By locatorPresentScreen) throws InterruptedException {
+
+	public void clicksAgainManyClicks(int howMany, By locatorNextScreen, By locatorPresentScreen)
+			throws InterruptedException {
 		Thread.sleep(1000);
 		try {
 			for (int i = 1; i <= howMany; i++) {
 				Thread.sleep(1000);
-				boolean isElmPresent = DriverFactory.getInstance().getMobileDriver().findElements(locatorNextScreen).size() > 0;
+				boolean isElmPresent = DriverFactory.getInstance().getMobileDriver().findElements(locatorNextScreen)
+						.size() > 0;
 				if (isElmPresent) {
-					
+
 					break;
-				}else {
+				} else {
 					DriverFactory.getInstance().getMobileDriver().findElement(locatorPresentScreen).click();
 				}
-				
+
 			}
 		} catch (Exception e) {
 		}
 	}
-	
-	
+
+	///////////////////////////////// XNotify(Vinoth) //////////////////////////
+
+	public void openNotifications() {
+
+		AndroidDriver androidDriver = (AndroidDriver) DriverFactory
+				.getInstance()
+				.getMobileDriver();
+
+		androidDriver.openNotifications();
+
+		ReportManager.logInfo(
+				"Successfully opened notification tray");
+	}
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="E2E_Suite">
+
+    <test name="Hybrid_E2E_Test">
+
+        <parameter name="platform" value="Android"/>
+
+        <parameter name="udid" value="RZCX314XC4F"/>
+
+        <parameter name="deviceName" value="Samsung A55"/>
+
+        <classes>
+
+            <class name="com.xnotify.bdd.common.runner.E2ERunner"/>
+
+        </classes>
+
+    </test>
+
+</suite>
