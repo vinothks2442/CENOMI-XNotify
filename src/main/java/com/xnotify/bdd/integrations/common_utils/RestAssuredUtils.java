@@ -2,7 +2,6 @@ package com.xnotify.bdd.integrations.common_utils;
 
 import static io.restassured.RestAssured.given;
 
-
 import java.io.File;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ import io.restassured.config.ParamConfig;
 
 public class RestAssuredUtils {
 
- public static String baseURI = ConfigReader.getValue("baseURI");
+	public static String baseURI = ConfigReader.getValue("baseURI");
 
 	public static RequestSpecBuilder getSpec() {
 		RestAssured.config = RestAssuredConfig.config()
@@ -54,8 +53,8 @@ public class RestAssuredUtils {
 
 		Response response = given().spec(specification).when().get(resourceURI);
 		String hdr = response.headers().toString();
-//			ReportManager.logInfoAPI("URL: " + resourceURI);
-//			ReportManager.logInfoAPI("Header: " + hdr);
+		// ReportManager.logInfoAPI("URL: " + resourceURI);
+		// ReportManager.logInfoAPI("Header: " + hdr);
 		ReportManager
 				.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view URL</b></font></summary><p><pre>"
 						+ resourceURI + "</pre></script></p></details>");
@@ -69,7 +68,7 @@ public class RestAssuredUtils {
 		QueryableRequestSpecification queryable = SpecificationQuerier.query(specification);
 		Response response = given().spec(specification).relaxedHTTPSValidation().when().pathParams(pathParam).log()
 				.all().get(resourceURI);
-//			ReportManager.logInfoAPI("URL: " + resourceURI);
+		// ReportManager.logInfoAPI("URL: " + resourceURI);
 		String hdr = response.headers().toString();
 		ReportManager
 				.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view URL</b></font></summary><p><pre>"
@@ -88,7 +87,7 @@ public class RestAssuredUtils {
 		Response response = given().log().all().spec(specification).relaxedHTTPSValidation().when()
 				.queryParams(queryParam).get(resourceURI);
 		String hdr = response.headers().toString();
-//			ReportManager.logInfoAPI("URL: " + resourceURI);
+		// ReportManager.logInfoAPI("URL: " + resourceURI);
 		ReportManager
 				.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view URL</b></font></summary><p><pre>"
 						+ resourceURI + "</pre></script></p></details>");
@@ -193,25 +192,31 @@ public class RestAssuredUtils {
 		return response;
 	}
 
-//	public static Response post(RequestSpecification specification, Map<String, Object> pathParam, String resourceURI,
-//			String FilePath) {
-//		File file = new File(FilePath);
-//		QueryableRequestSpecification queryable = SpecificationQuerier.query(specification);
-//
-//		Response response = given().spec(specification).relaxedHTTPSValidation().when().pathParams(pathParam).log()
-//				.all().multiPart(file).post(resourceURI);
-//
-//		return response;
-//	}
-	public static Response post(RequestSpecification specification, Map<String, Object> pathParam,String body, String resourceURI) {
-        QueryableRequestSpecification queryable = SpecificationQuerier.query(specification);
-        Response response = given().spec(specification).log().all().relaxedHTTPSValidation().when().pathParams(pathParam).log()
-                .all().body(body).post(resourceURI);
-        String hdr=response.headers().toString();
-        ReportManager.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view BaseURI</b></font></summary><p><pre>"+baseURI+"</pre></script></p></details>");
+	// public static Response post(RequestSpecification specification, Map<String,
+	// Object> pathParam, String resourceURI,
+	// String FilePath) {
+	// File file = new File(FilePath);
+	// QueryableRequestSpecification queryable =
+	// SpecificationQuerier.query(specification);
+	//
+	// Response response =
+	// given().spec(specification).relaxedHTTPSValidation().when().pathParams(pathParam).log()
+	// .all().multiPart(file).post(resourceURI);
+	//
+	// return response;
+	// }
+	public static Response post(RequestSpecification specification, Map<String, Object> pathParam, String body,
+			String resourceURI) {
+		QueryableRequestSpecification queryable = SpecificationQuerier.query(specification);
+		Response response = given().spec(specification).log().all().relaxedHTTPSValidation().when()
+				.pathParams(pathParam).log()
+				.all().body(body).post(resourceURI);
+		String hdr = response.headers().toString();
+		ReportManager.logInfoAPI(
+				"<details><summary><font color=\"green\"><b>Click to view BaseURI</b></font></summary><p><pre>"
+						+ baseURI + "</pre></script></p></details>");
 		return response;
-    }
-	
+	}
 
 	public static Response post(RequestSpecification specification, Map<String, Object> pathParam,
 			Map<String, Object> queryParam, String resourceURI) {
@@ -372,8 +377,8 @@ public class RestAssuredUtils {
 				.post(resourceURI);
 
 		String hdr = response.headers().toString();
-//			ReportManager.logInfoAPI("URL: " + resourceURI);
-//			ReportManager.logInfoAPI("Header: " + hdr);
+		// ReportManager.logInfoAPI("URL: " + resourceURI);
+		// ReportManager.logInfoAPI("Header: " + hdr);
 
 		ReportManager
 				.logInfoAPI("<details><summary><font color=\"green\"><b>Click to view URL</b></font></summary><p><pre>"

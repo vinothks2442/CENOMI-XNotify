@@ -14,8 +14,8 @@ public class DemoScreens {
 
 	public void ableToSeeVehicle() {
 		String actualTxt = actions.getText(MobileUtil.returnByBasedOnPageNameAndObjectName("Gypsee", "car"));
-        Assert.assertEquals(actualTxt, ConfigReader.getValue("carName"));
-		
+		Assert.assertEquals(actualTxt, ConfigReader.getValue("carName"));
+
 	}
 
 	public void clicksOnBcakBtn() {
@@ -28,7 +28,7 @@ public class DemoScreens {
 
 	public void ableToSeeDeviceAdded() throws IOException {
 		ReportManager.logMobileScreenshotInfo();
-		
+
 	}
 
 }

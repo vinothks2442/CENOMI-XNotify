@@ -20,7 +20,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 @CucumberOptions(features = { "@target/mobile_rerun.txt" }, glue = { "com/Gypsee/bdd/mobile/step_definitions",
 		"com/Gypsee/bdd/common/hooks" }, tags = "@", plugin = { "pretty",
 				"html:target/site/cucumber-pretty/cucumber_Mobile.html", "json:target/cucumber/cucumber.json",
-			 }, monochrome = true, publish = true, dryRun = false)
+		}, monochrome = true, publish = true, dryRun = false)
 public class MobileRunnerFailed {
 	private TestNGCucumberRunner testNGCucumberRunner;
 

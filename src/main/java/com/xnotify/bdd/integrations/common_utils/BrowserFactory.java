@@ -1,7 +1,7 @@
 package com.xnotify.bdd.integrations.common_utils;
 
 import java.awt.Dimension;
-
+import java.nio.file.Paths;
 import java.awt.Toolkit;
 
 import com.microsoft.playwright.Browser;
@@ -57,34 +57,45 @@ public class BrowserFactory {
 		tlPlaywright.set(Playwright.create());
 
 		switch (Browser.toLowerCase()) {
-		case "chromium":
-			tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)));
-			break;
-		case "firefox":
-			tlBrowser.set(getPlaywright().firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)));
-			break;
-		case "safari":
-			tlBrowser.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(false)));
-			break;
-		case "chrome":
-			tlBrowser.set(
-					getPlaywright().chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false)));
-			break;
-		case "edge":
-			tlBrowser.set(
-					getPlaywright().chromium().launch(new LaunchOptions().setChannel("msedge").setHeadless(false)));
-			break;
+			case "chromium":
+				tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+				break;
+			case "firefox":
+				tlBrowser.set(getPlaywright().firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+				break;
+			case "safari":
+				tlBrowser.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+				break;
+			case "chrome":
+				tlBrowser.set(
+						getPlaywright().chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false)));
+				break;
+			case "edge":
+				tlBrowser.set(
+						getPlaywright().chromium().launch(new LaunchOptions().setChannel("msedge").setHeadless(false)));
+				break;
 
-		default:
-			System.out.println("please pass the right browser name......");
-			break;
+			default:
+				System.out.println("please pass the right browser name......");
+				break;
 		}
+
+		String authFile = "src/test/resources/auth/session.json";
 
 		String dimensions = System.getProperty("Dimension");
 		int[] pixels = setDimensions(dimensions);
+
+		// tlBrowserContext.set(getBrowser().newContext(
+		// new Browser.NewContextOptions().setStorageStatePath(Paths.get(authFile))
+		// .setViewportSize(pixels[0], pixels[1]).setAcceptDownloads(true)));
+		// tlPage.set(getBrowserContext().newPage());
+
+		// Without auth session storage state
 		tlBrowserContext.set(getBrowser().newContext(
-				new Browser.NewContextOptions().setViewportSize(pixels[0], pixels[1]).setAcceptDownloads(true)));
+				new Browser.NewContextOptions()
+						.setViewportSize(pixels[0], pixels[1]).setAcceptDownloads(true)));
 		tlPage.set(getBrowserContext().newPage());
+
 	}
 
 	public int[] setDimensions(String dimensions) {

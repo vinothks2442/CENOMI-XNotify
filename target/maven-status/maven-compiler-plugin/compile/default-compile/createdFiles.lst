@@ -1,10 +1,10 @@
 com\xnotify\bdd\integrations\common_utils\DBconnection.class
 com\xnotify\bdd\integrations\common_utils\DriverFactory.class
+com\xnotify\bdd\integrations\common_utils\FilterCriteria.class
 com\xnotify\bdd\integrations\NG_listners\PageEvent.class
 com\xnotify\bdd\integrations\common_utils\CsvReader.class
 com\xnotify\bdd\enums\EnvType.class
 com\xnotify\bdd\integrations\common_utils\JsonComponent.class
-com\xnotify\bdd\ccl\PlayActions$SubmissionResult.class
 com\xnotify\bdd\enums\AuthorType.class
 com\xnotify\bdd\integrations\report_utils\ScreenshotUtil.class
 com\xnotify\bdd\integrations\common_utils\SpecializedScreenRecorder.class
@@ -24,7 +24,9 @@ com\xnotify\bdd\integrations\report_utils\ReportManager.class
 com\xnotify\bdd\ccl\MobileActions.class
 com\xnotify\bdd\constants\FrameworkConstants.class
 com\xnotify\bdd\integrations\common_utils\Constants.class
+com\xnotify\bdd\enums\FilterType.class
 com\xnotify\bdd\enums\WaitStrategy.class
+com\xnotify\bdd\integrations\common_utils\TableSchema.class
 com\xnotify\bdd\enums\CategoryType.class
 com\xnotify\bdd\integrations\common_utils\JsonUtils.class
 com\xnotify\bdd\integrations\NG_listners\MobileEvent.class

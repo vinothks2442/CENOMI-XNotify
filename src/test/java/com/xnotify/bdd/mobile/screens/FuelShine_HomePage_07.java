@@ -9,131 +9,121 @@ import com.xnotify.bdd.integrations.report_utils.ReportManager;
 public class FuelShine_HomePage_07 {
 	MobileActions action = new MobileActions();
 
-	public void displayPageDetails() throws IOException, InterruptedException
-	{
-		
-		
+	public void displayPageDetails() throws IOException, InterruptedException {
+
 		Thread.sleep(7000);
-				ReportManager.logMobileScreenshot();
+		ReportManager.logMobileScreenshot();
 	}
-	public void clickOnPerformance() throws InterruptedException
-	{
+
+	public void clickOnPerformance() throws InterruptedException {
 		Thread.sleep(2000);
 
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "HomePage_Performnace"),
-				"HomePage_Performance");		
+				"HomePage_Performance");
 	}
-	public void clikcOnMyVallet() throws InterruptedException
-	{
+
+	public void clikcOnMyVallet() throws InterruptedException {
 		Thread.sleep(2000);
 
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "HomePage_MyVallet"),
-				"HomePage_Myvallet");		
+				"HomePage_Myvallet");
 
 	}
-	public void clickOnSettings() throws InterruptedException
-	{
+
+	public void clickOnSettings() throws InterruptedException {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "HomePage_Settings"),
-				"HomePage_settings");	
+				"HomePage_settings");
 		Thread.sleep(2000);
 
-
-		
 	}
-	public void clickMyvehicles()
-	{
+
+	public void clickMyvehicles() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "HomePage_Settings_Myvehicle"),
-				"Setting_Myvehicle");		
+				"Setting_Myvehicle");
 
-		
 	}
-	public void clickBackButton()
-	{
+
+	public void clickBackButton() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "HomePage_Settings_backButton"),
-				"HomePage_BackButton");		
+				"HomePage_BackButton");
 
-		
 	}
-	public void clickAlertConfiguration()
-	{
+
+	public void clickAlertConfiguration() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "HomePage_Settings_AlertConfig"),
-				"Settin_AlertConfig");		
-	
+				"Settin_AlertConfig");
+
 	}
-	
-	public void clickAddVehiclePlusSymbol()
-	{
+
+	public void clickAddVehiclePlusSymbol() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVehicle_Add"),
 				"Adding number");
 	}
-	public void enterInvalidVehicleNumber(String string)
-	{
+
+	public void enterInvalidVehicleNumber(String string) {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVehicle_InvalidNumber"),
-				"Invalid Number");		
-	
-	  action.sendKeys(
+				"Invalid Number");
+
+		action.sendKeys(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVehicle_InvalidNumber"),
 				string);
 
 	}
-	
-	public void clickAddVehicleButton()
-	{
+
+	public void clickAddVehicleButton() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVehicle_AddButton"),
 				"Button number");
 	}
-	public void clickMyValletDuration()
-	{
+
+	public void clickMyValletDuration() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_Duration"),
 				"Vallet duration");
 	}
-	public void clickTodayDuration()
-	{
+
+	public void clickTodayDuration() {
 		action.Click(
 				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_Today"),
 				"Today Duration");
 	}
-	public void clickForteenDaysDuration()
-	{
+
+	public void clickForteenDaysDuration() {
 		action.Click(
-				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_ForteenDays"),"for Forteendays");
+				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_ForteenDays"),
+				"for Forteendays");
 	}
-				public void clickTwentyEightDaysDuration()
-				{
-					action.Click(
-							MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_TwentyEightdays"),
-							"Vallet  Eight for twentyduration");
-				}
-				public void clickThreeMonthsDuration()
-				{
-					action.Click(
-							MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_ThreeMonths"),
-							"Three months duration");
-				}
-				public void clickSixMonthsDuration()
-				{
-					action.Click(
-							MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_SixMonths"),
-							"Six months duration");
-				}
-				public void clickOneYearDuration()
-				{
-					action.Click(
-							MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_OneYear"),
-							"One year duration");
-				}
 
+	public void clickTwentyEightDaysDuration() {
+		action.Click(
+				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_TwentyEightdays"),
+				"Vallet  Eight for twentyduration");
 	}
-	
-	
 
+	public void clickThreeMonthsDuration() {
+		action.Click(
+				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_ThreeMonths"),
+				"Three months duration");
+	}
+
+	public void clickSixMonthsDuration() {
+		action.Click(
+				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_SixMonths"),
+				"Six months duration");
+	}
+
+	public void clickOneYearDuration() {
+		action.Click(
+				MobileUtil.returnByBasedOnPageNameAndObjectName("FuelShine2", "MyVallet_OneYear"),
+				"One year duration");
+	}
+
+}

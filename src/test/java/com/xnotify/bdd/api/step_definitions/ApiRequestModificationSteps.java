@@ -2,7 +2,6 @@ package com.xnotify.bdd.api.step_definitions;
 
 import java.io.File;
 
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -59,7 +58,7 @@ public class ApiRequestModificationSteps {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		  ReportManager.logInfoAPI("The request body is - "+ request);
+		ReportManager.logInfoAPI("The request body is - " + request);
 		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.PAYLOAD.name(), request);
 		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.REQUEST_NAME.name(), fileName);
 		apiTestContext.getApiTestBase().requestMap.put(WS_PayloadsHeaders.RESOURCE_URI.name(),
@@ -588,7 +587,7 @@ public class ApiRequestModificationSteps {
 	}
 
 	@And("I Set Up Header {string} and Value jpath of {string} from {string} response file")
-	public void setUpsBearerToken(String keyName,String path, String fileName) throws Throwable {
+	public void setUpsBearerToken(String keyName, String path, String fileName) throws Throwable {
 		Configuration configuration = Configuration.builder().build();
 		File json = new File("./ResponseStore/" + fileName + ".json");
 		String responseBody;
@@ -608,6 +607,7 @@ public class ApiRequestModificationSteps {
 		}
 		apiTestContext.getApiTestBase().specification.headers(HeaderMaps);
 	}
+
 	@And("I Add the {string} Header value of {string} jpath from {string} filename")
 	public void fetchHeadersFromResponseFile(String Value, String jPaths, String fileName) { //
 		Configuration configuration = Configuration.builder().build();

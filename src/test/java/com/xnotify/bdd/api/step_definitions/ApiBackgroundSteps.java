@@ -95,27 +95,27 @@ public class ApiBackgroundSteps {
 
 		Map<String, String> HeaderMaps = new HashMap<String, String>();
 
-		String token = "JWT"+ConfigReader.getValue("AuthorizationToken");
+		String token = "JWT" + ConfigReader.getValue("AuthorizationToken");
 		HeaderMaps.put("Authorization", token);
 		if (apiTestContext.getApiTestBase().specification == null) {
 			apiTestContext.getApiTestBase().specification = RestAssuredUtils.getSpec().build();
 		}
 		apiTestContext.getApiTestBase().specification.headers(HeaderMaps);
-		
+
 	}
-	
+
 	@And("I Set Up Authorization Token with chain value")
 	public void setUpTokenWithChainValue() throws Throwable {
 
 		Map<String, String> HeaderMaps = new HashMap<String, String>();
 
-		String token = "JWT "+ApiRequestModificationSteps.str_data;
+		String token = "JWT " + ApiRequestModificationSteps.str_data;
 		HeaderMaps.put("Authorization", token);
 		if (apiTestContext.getApiTestBase().specification == null) {
 			apiTestContext.getApiTestBase().specification = RestAssuredUtils.getSpec().build();
 		}
 		apiTestContext.getApiTestBase().specification.headers(HeaderMaps);
-		
+
 	}
 
 	@And("I Set Up Invalid Authorization Token")
@@ -130,7 +130,7 @@ public class ApiBackgroundSteps {
 		}
 		apiTestContext.getApiTestBase().specification.headers(HeaderMaps);
 	}
-	
+
 	@And("I Set Up Authorization Token Create Payment")
 	public void setUpCreatePaymentToken() throws Throwable {
 
@@ -143,7 +143,7 @@ public class ApiBackgroundSteps {
 		}
 		apiTestContext.getApiTestBase().specification.headers(HeaderMaps);
 	}
-	
+
 	@And("I Set Up Authorization Token Account Access")
 	public void setUpAccountAccessToken() throws Throwable {
 
@@ -156,35 +156,33 @@ public class ApiBackgroundSteps {
 		}
 		apiTestContext.getApiTestBase().specification.headers(HeaderMaps);
 	}
-	
-	@And("I set cookies using {string} name jpath and {string} value jpath from {string} file")
-	public void setCookiesUsingJsonFile(String nameJPath,String valueJPath,String fileName) {
-		
-		Configuration configuration = Configuration.builder().build();
-	    File json = new File("./ResponseStore/" + fileName + ".json");
-	    String responseBody;
-	    try {
-	        responseBody = JsonPath.using(configuration).parse(json).jsonString();
-	        System.out.println(responseBody);
-	        Map<String, String> cookieMaps = new HashMap<String, String>();
-	            String cookieName = String.valueOf(JsonUtils.getJSonObjectValue(responseBody, nameJPath));
-	            String cookieValue= String.valueOf(JsonUtils.getJSonObjectValue(responseBody, valueJPath));
-			cookieMaps.put(cookieName,cookieValue);
 
-		if (apiTestContext.getApiTestBase().specification == null) {
+	@And("I set cookies using {string} name jpath and {string} value jpath from {string} file")
+	public void setCookiesUsingJsonFile(String nameJPath, String valueJPath, String fileName) {
+
+		Configuration configuration = Configuration.builder().build();
+		File json = new File("./ResponseStore/" + fileName + ".json");
+		String responseBody;
+		try {
+			responseBody = JsonPath.using(configuration).parse(json).jsonString();
+			System.out.println(responseBody);
+			Map<String, String> cookieMaps = new HashMap<String, String>();
+			String cookieName = String.valueOf(JsonUtils.getJSonObjectValue(responseBody, nameJPath));
+			String cookieValue = String.valueOf(JsonUtils.getJSonObjectValue(responseBody, valueJPath));
+			cookieMaps.put(cookieName, cookieValue);
+
+			if (apiTestContext.getApiTestBase().specification == null) {
 				apiTestContext.getApiTestBase().specification = RestAssuredUtils.getSpec().build();
 			}
 			apiTestContext.getApiTestBase().specification.cookies(cookieMaps);
-	
-	    
-	 } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
-	
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-	
 	@And("I set the sign in cookie for request")
 	public void setCookiesUsingFile() {
 		if (apiTestContext.getApiTestBase().specification == null) {
@@ -194,7 +192,7 @@ public class ApiBackgroundSteps {
 	}
 
 	@When("I Set UP Base URI for Gypsee URL")
-		public void baseUriGypsee() throws Throwable {
-			RestAssuredUtils.baseURI = "https://gypsee.in";
-		}
+	public void baseUriGypsee() throws Throwable {
+		RestAssuredUtils.baseURI = "https://gypsee.in";
+	}
 }
