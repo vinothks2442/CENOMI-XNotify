@@ -97,7 +97,7 @@ public class TeamManagementScreen {
     String enteredEmail;
 
     public void navigateToTeamManagement() {
-        play.click(settingsMenu, "Settings Menu");
+        // play.click(settingsMenu, "Settings Menu");
         play.click(teamManagementMenu, "Team Management Menu");
     }
 

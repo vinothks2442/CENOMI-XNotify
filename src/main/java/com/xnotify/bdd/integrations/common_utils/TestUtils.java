@@ -1,4 +1,4 @@
-package com.XNotify.bdd.integrations.common_utils;
+package com.xnotify.bdd.integrations.common_utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,31 +26,29 @@ public class TestUtils {
 		if (type == null)
 			type = "";
 		switch (type) {
-		case "I":
-			return Integer.parseInt(value);
-		case "D":
-			return Double.parseDouble(value);
-		case "BI":
-			return new BigInteger(value);
-		case "Null":
-		case "None":
-			return null;
-		case "Bool":
-			return (value.equals("true")) ? true : false;
-		case "A":
-			return new JSONArray(value);
-		case "Spc":
-			return " " + value.toString();
-		default:
-			if (value != null) {
-				return value.toString();
-			} else {
-				return "";
-			}
+			case "I":
+				return Integer.parseInt(value);
+			case "D":
+				return Double.parseDouble(value);
+			case "BI":
+				return new BigInteger(value);
+			case "Null":
+			case "None":
+				return null;
+			case "Bool":
+				return (value.equals("true")) ? true : false;
+			case "A":
+				return new JSONArray(value);
+			case "Spc":
+				return " " + value.toString();
+			default:
+				if (value != null) {
+					return value.toString();
+				} else {
+					return "";
+				}
 		}
 	}
-
-	
 
 	public static String getDateTimeDiff(String timeDiff) {
 
@@ -69,7 +67,6 @@ public class TestUtils {
 			throw new RuntimeException("timeDiff doesn't contain 'm'(minutes), 'h'(hours), 'd'(days)");
 	}
 
-	
 	public static Map<String, String> setHeaders(String HeaderKeys, String HeaderValues) {
 		Map<String, String> headers = new HashMap<String, String>();
 		int i = 0;
@@ -85,13 +82,13 @@ public class TestUtils {
 
 	public static Map<String, Object> getDefaultFields(String PayLoad, Map<String, Object> keyValue) {
 		switch (PayLoad) {
-		case "POSTPayload":
-			if (!keyValue.containsKey("pg_req_res_id")) {
-				keyValue.put("pg_req_res_id", ThreadLocalRandom.current().nextInt(1000000001, 1100000000 + 1));
-			}
-			break;
-		default:
-			break;
+			case "POSTPayload":
+				if (!keyValue.containsKey("pg_req_res_id")) {
+					keyValue.put("pg_req_res_id", ThreadLocalRandom.current().nextInt(1000000001, 1100000000 + 1));
+				}
+				break;
+			default:
+				break;
 		}
 		return keyValue;
 	}
@@ -113,7 +110,6 @@ public class TestUtils {
 			return value;
 		}
 	}
-
 
 	public static BufferedReader readFile(String FilePath, String FileName) {
 		try {
@@ -147,8 +143,8 @@ public class TestUtils {
 			}
 		} else {
 			for (int i = 0; i < table.size(); i++) {
-				String value = (table.get(i).get("Value")==null)?"":table.get(i).get("Value");
-                request = JsonUtils.ModifyJSON(request, table.get(i).get("JPath"), value);
+				String value = (table.get(i).get("Value") == null) ? "" : table.get(i).get("Value");
+				request = JsonUtils.ModifyJSON(request, table.get(i).get("JPath"), value);
 			}
 		}
 		return request;
@@ -170,21 +166,20 @@ public class TestUtils {
 		}
 		return resultMap;
 	}
-	
+
 	public static File[] findFiles(String regex, File dir) {
-		if(Files.exists(Paths.get(dir.getAbsolutePath()))) {
+		if (Files.exists(Paths.get(dir.getAbsolutePath()))) {
 			return dir.listFiles(file -> file.getName().matches(regex));
-		}
-		else
-			throw new RuntimeException("specified directory :"+dir.getAbsolutePath()+ " does not exist");
+		} else
+			throw new RuntimeException("specified directory :" + dir.getAbsolutePath() + " does not exist");
 	}
-	
+
 	public static void deleteFiles(String regex, File dir) {
-		if(Files.exists(Paths.get(dir.getAbsolutePath()))) {
-		File[] fileList = dir.listFiles(file -> file.getName().matches(regex));
-		for(File file:fileList)
-			file.delete();
+		if (Files.exists(Paths.get(dir.getAbsolutePath()))) {
+			File[] fileList = dir.listFiles(file -> file.getName().matches(regex));
+			for (File file : fileList)
+				file.delete();
+		}
 	}
-	}
-	
+
 }

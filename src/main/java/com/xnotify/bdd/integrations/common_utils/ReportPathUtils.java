@@ -1,6 +1,6 @@
-package com.XNotify.bdd.integrations.common_utils;
+package com.xnotify.bdd.integrations.common_utils;
 
-import static com.XNotify.bdd.constants.FrameworkConstants.*;
+import static com.xnotify.bdd.constants.FrameworkConstants.*;
 
 //final -> We do not want any class to extend this class
 public final class ReportPathUtils {

@@ -1,4 +1,4 @@
-package com.XNotify.bdd.integrations.common_utils;
+package com.xnotify.bdd.integrations.common_utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

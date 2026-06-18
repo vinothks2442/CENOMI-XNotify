@@ -1,4 +1,4 @@
-package com.XNotify.bdd.enums;
+package com.xnotify.bdd.enums;
 
 public enum DriverType {
 
@@ -7,7 +7,5 @@ public enum DriverType {
 	EDGE,
 	SAFARI,
 	OPERA;
-	
-	
-}
 
+}

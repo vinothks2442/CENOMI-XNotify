@@ -11,14 +11,12 @@ import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.jruby.RubyProcess.Sys;
-
 import com.xnotify.bdd.integrations.report_utils.ReportManager;
 import com.xnotify.bdd.integrations.common_utils.BrowserFactory;
+import com.xnotify.bdd.integrations.common_utils.TableSchema;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.WaitForSelectorState;
-
-import junit.framework.Assert;
+import org.testng.Assert;
 
 public class PlayActions {
 
@@ -219,7 +217,7 @@ public class PlayActions {
 	}
 
 	public void selectOptionFromDropdown(String locator, String value) throws InterruptedException {
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		Locator options = page().locator(locator);
 		int count = options.count();
 		System.out.println("Total options: " + count);
@@ -237,10 +235,43 @@ public class PlayActions {
 		throw new RuntimeException("Option not found: " + value);
 	}
 
+	public void clickActionDropdownByName(String rowLocator, String dropdownLocator, String segmentName)
+			throws InterruptedException {
+
+		Thread.sleep(5000);
+		Locator rows = page().locator(rowLocator);
+		System.out.println("Total rows: " + rows.count());
+		for (int i = 0; i < rows.count(); i++) {
+			String name = rows.nth(i).textContent().trim();
+			System.out.println("Row " + i + " text: " + name);
+			if (name.equalsIgnoreCase(segmentName)) {
+				page().locator(dropdownLocator).nth(i).click();
+				return;
+			}
+		}
+		throw new RuntimeException("Segment not found: " + segmentName);
+	}
+
 	public void waitForSelector(String locator, double timeout, String info) {
 		page().waitForSelector(locator, new Page.WaitForSelectorOptions().setTimeout(timeout));
 		System.out.println("Successfully waited for selector -  " + info);
 		ReportManager.logInfo("Successfully waited for selector -  " + info);
+	}
+
+	public void waitForTableRowText(String rowLocator, String cellSelector, String expectedText, double timeout) {
+		String function = "([rowLocator, cellSelector, expectedText]) => {"
+				+ " const iterator = document.evaluate(rowLocator, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);"
+				+ " for (let i = 0; i < iterator.snapshotLength; i++) {"
+				+ "   const row = iterator.snapshotItem(i);"
+				+ "   const cell = row && row.querySelector(cellSelector);"
+				+ "   if (cell && cell.innerText.toLowerCase().includes(expectedText.toLowerCase())) return true;"
+				+ " }"
+				+ " return false;"
+				+ " }";
+		page().waitForFunction(function, Arrays.asList(rowLocator, cellSelector, expectedText),
+				new Page.WaitForFunctionOptions().setTimeout(timeout));
+		System.out.println("Successfully waited for filtered table rows containing - " + expectedText);
+		ReportManager.logInfo("Successfully waited for filtered table rows containing - " + expectedText);
 	}
 
 	public boolean isVisibleInsideFrame(String frameLocator, String elementLocator, String info) {
@@ -367,6 +398,13 @@ public class PlayActions {
 
 	public String textContent(String locator) {
 		String Text = page().textContent(locator);
+		System.out.println("Text is -  " + Text);
+		ReportManager.logInfo("Text is -  " + Text);
+		return Text;
+	}
+
+	public String getInnerText(String locator) {
+		String Text = page().innerText(locator);
 		System.out.println("Text is -  " + Text);
 		ReportManager.logInfo("Text is -  " + Text);
 		return Text;
@@ -670,77 +708,6 @@ public class PlayActions {
 
 	}
 
-	public SubmissionResult validateSubmission(
-			String successBtn,
-			String toastLoc,
-			String errorLoc,
-			String formLoc,
-			int timeoutMs) {
-
-		long end = System.currentTimeMillis() + timeoutMs;
-
-		while (System.currentTimeMillis() < end) {
-
-			// ✅ SUCCESS BUTTON
-			boolean hasSuccessBtn = page().locator(successBtn).count() > 0;
-
-			// ✅ TOAST
-			String toastText = null;
-			try {
-				Locator toast = page().locator(toastLoc);
-				if (toast.count() > 0) {
-					toastText = toast.first().textContent();
-				}
-			} catch (Exception ignored) {
-			}
-
-			String toast = toastText == null ? "" : toastText.toLowerCase().replaceAll("\\s+", " ").trim();
-
-			boolean isSuccessToast = toast.contains("success") ||
-					toast.contains("submitted") ||
-					toast.contains("created");
-
-			boolean isErrorToast = toast.contains("error") ||
-					toast.contains("failed") ||
-					toast.contains("invalid") ||
-					toast.contains("check the form");
-
-			boolean hasFieldErrors = page().locator(errorLoc).count() > 0;
-			boolean hasErrors = hasFieldErrors || isErrorToast;
-			boolean isFormVisible = false;
-			try {
-				Locator form = page().locator(formLoc);
-				isFormVisible = form.count() > 0 && form.first().isVisible();
-			} catch (Exception ignored) {
-			}
-
-			// ✅ FINAL
-			boolean isSubmitted = hasSuccessBtn || isSuccessToast;
-
-			if (isSubmitted || hasErrors) {
-				return new SubmissionResult(isSubmitted, hasErrors, isFormVisible, toastText);
-			}
-
-			page().waitForTimeout(300);
-		}
-
-		return new SubmissionResult(false, false, true, null);
-	}
-
-	public class SubmissionResult {
-		public boolean isSubmitted;
-		public boolean hasErrors;
-		public boolean isFormVisible;
-		public String toastMessage;
-
-		public SubmissionResult(boolean isSubmitted, boolean hasErrors, boolean isFormVisible, String toastMessage) {
-			this.isSubmitted = isSubmitted;
-			this.hasErrors = hasErrors;
-			this.isFormVisible = isFormVisible;
-			this.toastMessage = toastMessage;
-		}
-	}
-
 	public void verifyMultipleText(String locator, String expectedTextFromConfig, String elementName) {
 
 		// Step 1: Convert config string → List
@@ -905,238 +872,128 @@ public class PlayActions {
 		}
 	}
 
-	public void selectTime(String inputLocator,
-			String hourValueLocator,
-			String minuteValueLocator,
-			String meridianValueLocator,
-			String hourUpLocator,
-			String hourDownLocator,
-			String minuteUpLocator,
-			String minuteDownLocator,
-			String meridianToggleLocator,
-			String timeValue,
-			String info) {
+	public void validateTableFilters(String rowsLocator, String noDataLocator, Map<Integer, String> expectedFilters) {
 
-		try {
-			// Validate input
-			if (timeValue == null || timeValue.trim().isEmpty()) {
-				throw new IllegalArgumentException("Time value is empty for " + info);
-			}
-			// Split time (hh:mm AM/PM)
-			String[] parts = timeValue.trim().split(" ");
-			if (parts.length != 2) {
-				throw new IllegalArgumentException("Time value format invalid for '" + timeValue + "' in " + info
-						+ ". Expected format: hh:mm AM/PM");
-			}
-			String[] hm = parts[0].split(":");
-			if (hm.length != 2) {
-				throw new IllegalArgumentException("Time value hour:minute part invalid for '" + timeValue + "' in "
-						+ info + ". Expected format: hh:mm");
-			}
+		page().waitForTimeout(2000);
 
-			int targetHour = Integer.parseInt(hm[0]);
-			int targetMinute = Integer.parseInt(hm[1]);
-			String targetMeridian = parts[1];
+		// No Data Scenario
+		if (page().locator(noDataLocator).isVisible()) {
 
-			// Open time picker
-			page().click(inputLocator);
+			String message = page().locator(noDataLocator).textContent().trim();
 
-			// Wait for time picker to load
-			page().waitForTimeout(500);
+			Assert.assertEquals(message, "No campaigns found", "Unexpected no data message");
 
-			// --- Adjust Hour ---
-			int hourAttempts = 0;
-			while (hourAttempts < 24) {
-				page().waitForTimeout(100);
+			System.out.println("\n====================================");
+			System.out.println("✅ NO CAMPAIGNS FOUND");
+			System.out.println("Applied Filters : " + expectedFilters);
+			System.out.println("Message : " + message);
+			System.out.println("====================================\n");
 
-				int currentHour = -1;
-				String hourText = "";
-
-				try {
-					Locator hourLocator = page().locator(hourValueLocator);
-					int elementCount = hourLocator.count();
-
-					if (elementCount == 0) {
-						System.out.println("WARNING: Hour value locator found 0 elements for '" + hourValueLocator
-								+ "', checking alternative locators...");
-						// Try alternative: look for any visible hour-like elements
-						hourLocator = page().locator("//div[contains(@class, 'rmdp-input')]//input[1]");
-						if (hourLocator.count() == 0) {
-							hourLocator = page().locator("//input[@type='text'][1]");
-						}
-					}
-
-					hourText = hourLocator.first().textContent().trim();
-					if (hourText.isEmpty()) {
-						hourText = hourLocator.first().inputValue().trim();
-					}
-
-					if (hourText.isEmpty()) {
-						throw new IllegalStateException(
-								"Hour value could not be read - locator: '" + hourValueLocator + "'");
-					}
-
-					currentHour = Integer.parseInt(hourText);
-				} catch (NumberFormatException e) {
-					throw new IllegalStateException("Hour value is not numeric: '" + hourText + "' for " + info, e);
-				} catch (Exception e) {
-					throw new IllegalStateException("Error reading hour value for " + info + ": " + e.getMessage(), e);
-				}
-
-				if (currentHour == targetHour)
-					break;
-
-				if (currentHour < targetHour) {
-					page().click(hourUpLocator);
-				} else {
-					page().click(hourDownLocator);
-				}
-
-				hourAttempts++;
-			}
-
-			if (hourAttempts == 24) {
-				throw new RuntimeException("Hour selection failed for " + info);
-			}
-
-			// --- Adjust Minute ---
-			int minuteAttempts = 0;
-			while (minuteAttempts < 60) {
-				page().waitForTimeout(100);
-
-				int currentMinute = -1;
-				String minuteText = "";
-
-				try {
-					Locator minuteLocator = page().locator(minuteValueLocator);
-					int elementCount = minuteLocator.count();
-
-					if (elementCount == 0) {
-						System.out.println("WARNING: Minute value locator found 0 elements for '" + minuteValueLocator
-								+ "', checking alternative locators...");
-						// Try alternative: look for any visible minute-like elements
-						minuteLocator = page().locator("//div[contains(@class, 'rmdp-input')]//input[2]");
-						if (minuteLocator.count() == 0) {
-							minuteLocator = page().locator("//input[@type='text'][2]");
-						}
-					}
-
-					minuteText = minuteLocator.first().textContent().trim();
-					if (minuteText.isEmpty()) {
-						minuteText = minuteLocator.first().inputValue().trim();
-					}
-
-					if (minuteText.isEmpty()) {
-						throw new IllegalStateException(
-								"Minute value could not be read - locator: '" + minuteValueLocator + "'");
-					}
-
-					currentMinute = Integer.parseInt(minuteText);
-				} catch (NumberFormatException e) {
-					throw new IllegalStateException("Minute value is not numeric: '" + minuteText + "' for " + info, e);
-				} catch (Exception e) {
-					throw new IllegalStateException("Error reading minute value for " + info + ": " + e.getMessage(),
-							e);
-				}
-
-				if (currentMinute == targetMinute)
-					break;
-
-				if (currentMinute < targetMinute) {
-					page().click(minuteUpLocator);
-				} else {
-					page().click(minuteDownLocator);
-				}
-
-				minuteAttempts++;
-			}
-
-			if (minuteAttempts == 60) {
-				throw new RuntimeException("Minute selection failed for " + info);
-			}
-
-			// --- Adjust AM/PM ---
-			String currentMeridian = page().locator(meridianValueLocator).textContent().trim();
-
-			if (!currentMeridian.equalsIgnoreCase(targetMeridian)) {
-				page().click(meridianToggleLocator);
-			}
-
-			System.out.println("Successfully selected time - " + timeValue + " in " + info);
-			ReportManager.logInfo("Successfully selected time - " + timeValue + " in " + info);
-
-		} catch (Exception e) {
-			System.out.println("Failed to select time - " + timeValue + " in " + info);
-			ReportManager.logInfo("Failed to select time - " + timeValue + " in " + info);
-			throw e;
+			return;
 		}
-	}
 
-	public void selectYesNoOption(String questionLabel, String value, String info) {
+		Locator rows = page().locator(rowsLocator);
 
-		try {
-			// Normalize input
-			String input = value.trim().toLowerCase();
+		int rowCount = rows.count();
 
-			if (!input.equals("yes") && !input.equals("no")) {
-				throw new IllegalArgumentException("Invalid value: " + value + " | Only Yes/No allowed");
+		Assert.assertTrue(rowCount > 0, "No records found after applying filters");
+
+		int passedRows = 0;
+		int failedRows = 0;
+
+		System.out.println("\n====================================");
+		System.out.println("FILTER VALIDATION STARTED");
+		System.out.println("Applied Filters : " + expectedFilters);
+		System.out.println("Total Records : " + rowCount);
+		System.out.println("====================================");
+
+		// Print all values from filtered columns
+		System.out.println("\n========== ACTUAL COLUMN VALUES ==========");
+
+		for (Map.Entry<Integer, String> filter : expectedFilters.entrySet()) {
+
+			int columnIndex = filter.getKey();
+
+			System.out.println("\nColumn " + columnIndex + " Values:");
+
+			for (int row = 0; row < rowCount; row++) {
+
+				String actualValue = rows.nth(row).locator("td").nth(columnIndex - 1).textContent().trim();
+
+				System.out.println("Row " + (row + 1) + " -> [" + actualValue + "]");
 			}
-
-			// Dynamic locator based on label text
-			String baseLocator = "//label[normalize-space()='" + questionLabel + "']/following::input[@type='radio']";
-
-			Locator options = page().locator(baseLocator);
-
-			if (options.count() < 2) {
-				throw new RuntimeException("Radio buttons not found for question: " + questionLabel);
-			}
-
-			// Index 0 = Yes, Index 1 = No (assuming UI order)
-			int indexToClick = input.equals("yes") ? 0 : 1;
-
-			options.nth(indexToClick).click();
-
-			System.out.println("Selected '" + value + "' for: " + questionLabel);
-			ReportManager.logInfo("Selected '" + value + "' for: " + questionLabel);
-
-		} catch (Exception e) {
-			System.out.println("Failed to select '" + value + "' for: " + questionLabel);
-			ReportManager.logInfo("Failed to select '" + value + "' for: " + questionLabel);
-			throw e;
 		}
-	}
 
-	public void mockApi(
-			String urlPattern,
-			String method,
-			String containsUrl,
-			int statusCode,
-			String responseBody) {
+		System.out.println("==========================================\n");
 
-		page().route(urlPattern, route -> {
+		for (int row = 0; row < rowCount; row++) {
 
-			Request request = route.request();
+			boolean rowPassed = true;
 
-			String requestUrl = request.url();
+			System.out.println("\n---------- ROW " + (row + 1) + " ----------");
 
-			// Match method + specific URL condition
-			if (request.method().equalsIgnoreCase(method)
-					&& requestUrl.contains(containsUrl)) {
+			for (Map.Entry<Integer, String> filter : expectedFilters.entrySet()) {
 
-				System.out.println("=========== MOCK API ===========");
-				System.out.println("URL    : " + requestUrl);
-				System.out.println("METHOD : " + request.method());
+				int columnIndex = filter.getKey();
+				String expectedValue = filter.getValue();
 
-				route.fulfill(new Route.FulfillOptions()
-						.setStatus(statusCode)
-						.setContentType("application/json")
-						.setBody(responseBody));
+				String actualValue = rows.nth(row).locator("td").nth(columnIndex - 1).textContent().trim();
+
+				System.out.println("Column : " + columnIndex + " | Expected : [" + expectedValue + "] | Actual : ["
+						+ actualValue + "] | Expected Length : " + expectedValue.length() + " | Actual Length : "
+						+ actualValue.length());
+
+				boolean matched;
+
+				// Campaign Name Search
+				if (columnIndex == 1) {
+
+					matched = actualValue.toLowerCase().contains(expectedValue.toLowerCase());
+
+				} else {
+
+					// Exact Match (Case Sensitive)
+					matched = actualValue.equals(expectedValue);
+
+					// For case-insensitive match:
+					// matched = actualValue.equalsIgnoreCase(expectedValue);
+				}
+
+				if (!matched) {
+
+					rowPassed = false;
+
+					System.out.println("❌ FAIL | Row : " + (row + 1) + " | Column : " + columnIndex + " | Expected : ["
+							+ expectedValue + "] | Actual : [" + actualValue + "]");
+				}
+			}
+
+			if (rowPassed) {
+
+				passedRows++;
+
+				System.out.println("✅ PASS | Row : " + (row + 1));
 
 			} else {
 
-				// Continue other APIs normally
-				route.resume();
+				failedRows++;
 			}
-		});
+		}
+
+		System.out.println("\n============== SUMMARY ==============");
+		System.out.println("Applied Filters : " + expectedFilters);
+		System.out.println("Total Records : " + rowCount);
+		System.out.println("Passed Records : " + passedRows);
+		System.out.println("Failed Records : " + failedRows);
+		System.out.println("=====================================\n");
+
+		Assert.assertEquals(failedRows, 0,
+				"Filter validation failed. Passed Records: " + passedRows + ", Failed Records: " + failedRows);
 	}
+
+	public Page openInvitationLinkAndAcceptInvitation() {
+		Page invitationPage = page().context().newPage();
+		return invitationPage;
+	}
+
 }

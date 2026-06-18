@@ -1,7 +1,6 @@
-package com.XNotify.bdd.integrations.NG_listners;
+package com.xnotify.bdd.integrations.NG_listners;
 
 import java.lang.reflect.Method;
-
 
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
@@ -11,14 +10,14 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.XNotify.bdd.integrations.report_utils.ReportManager;
+import com.xnotify.bdd.integrations.report_utils.ReportManager;
 
 public class APIEvent implements ITestListener {
 
 	@Override
 	public void onTestStart(ITestResult arg0) {
 		System.out.println("+++++++++++++++++++++onTestStart++++++++++++++++++++");
-   //ReportManager.startTestAPI(arg0.getMethod().getMethodName(),"API");
+		// ReportManager.startTestAPI(arg0.getMethod().getMethodName(),"API");
 	}
 
 	@Override

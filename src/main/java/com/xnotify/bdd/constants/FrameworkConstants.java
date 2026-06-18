@@ -1,6 +1,6 @@
-package com.XNotify.bdd.constants;
+package com.xnotify.bdd.constants;
 
-import com.XNotify.bdd.integrations.common_utils.ReportPathUtils;
+import com.xnotify.bdd.integrations.common_utils.ReportPathUtils;
 
 public class FrameworkConstants {
 
@@ -14,7 +14,6 @@ public class FrameworkConstants {
 	public static final String ICON_OS_WINDOWS = "<i class='fa fa-windows' ></i>";
 	public static final String ICON_OS_MAC = "<i class='fa fa-apple' ></i>";
 	public static final String ICON_OS_LINUX = "<i class='fa fa-linux' ></i>";
-
 
 	public static final String ICON_Navigate_Right = "<i class='fa fa-arrow-circle-right' ></i>";
 	public static final String ICON_LAPTOP = "<i class='fa fa-laptop' style='font-size:18px'></i>";
@@ -40,7 +39,6 @@ public class FrameworkConstants {
 			+ "'><i class='fa fa-linkedin-square' style='font-size:24px'></i></a>";
 	public static final String ICON_SOCIAL_GITHUB = "<a href='" + ICON_SOCIAL_GITHUB_URL
 			+ "'><i class='fa fa-github-square' style='font-size:24px'></i></a>";
-
 
 	public static final String ICON_CAMERA = "<i class=\"fa fa-camera\" aria-hidden=\"true\"></i>";
 

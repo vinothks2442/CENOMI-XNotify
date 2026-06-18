@@ -1,4 +1,4 @@
-package com.XNotify.bdd.integrations.report_utils;
+package com.xnotify.bdd.integrations.report_utils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import com.XNotify.bdd.integrations.common_utils.Constants;
-import com.XNotify.bdd.integrations.common_utils.DriverFactory;
-import com.XNotify.bdd.integrations.report_utils.ScreenshotUtil;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -18,6 +15,9 @@ import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.microsoft.playwright.*;
+import com.xnotify.bdd.integrations.common_utils.Constants;
+import com.xnotify.bdd.integrations.common_utils.DriverFactory;
+import com.xnotify.bdd.integrations.report_utils.ScreenshotUtil;
 
 public class ReportManager {
 
@@ -35,15 +35,15 @@ public class ReportManager {
 
 			ExtentSparkReporter spark;
 
-			if (str_Execution_TYPE.equalsIgnoreCase("Web_UI")) {
+			if (str_Execution_TYPE.equalsIgnoreCase("Web_UI") || str_Execution_TYPE.equalsIgnoreCase("E2E")) {
 				spark = new ExtentSparkReporter(Constants.extent_reportPath);
 				extent.attachReporter(spark);
 				// spark.config().setEncoding("utf-8");
 				spark.config().setTheme(Theme.DARK);
-				spark.config().setDocumentTitle("Gypsee Web Report");
-				spark.config().setReportName("Gypsee");
+				spark.config().setDocumentTitle("XNotify Hybrid E2E Report");
+				spark.config().setReportName("XNotify");
 
-				extent.setSystemInfo("Organization", "Gypsee");
+				extent.setSystemInfo("Organization", "XNotify");
 				extent.setSystemInfo("Domain", "Engineering (IT - Software)");
 				extent.setSystemInfo("Skill", "Test Automation Engineer");
 
@@ -52,10 +52,10 @@ public class ReportManager {
 				extent.attachReporter(spark);
 				// spark.config().setEncoding("utf-8");
 				spark.config().setTheme(Theme.DARK);
-				spark.config().setDocumentTitle("Gypsee Mobile Report");
-				spark.config().setReportName("Gypsee");
+				spark.config().setDocumentTitle("XNotify Mobile Report");
+				spark.config().setReportName("XNotify");
 
-				extent.setSystemInfo("Organization", "Gypsee");
+				extent.setSystemInfo("Organization", "XNotify");
 				extent.setSystemInfo("Domain", "Engineering (IT - Software)");
 				extent.setSystemInfo("Skill", "Test Automation Engineer");
 
@@ -74,7 +74,6 @@ public class ReportManager {
 		testMap.put(Thread.currentThread().getId(), test);
 		extentMap.put(testName, test);
 	}
-
 
 	public static void logScreenshot() throws IOException { //
 		getCurrentTest().addScreenCaptureFromBase64String(ScreenshotUtil.takeScreenshot());
@@ -99,7 +98,7 @@ public class ReportManager {
 		getCurrentTest().fail("", mediaModel);
 
 	}
-	
+
 	public static void logMobileScreenshotInfo() throws IOException {
 
 		Media mediaModel = MediaEntityBuilder.createScreenCaptureFromBase64String(
@@ -183,13 +182,13 @@ public class ReportManager {
 					System.getProperty("user.dir") + "/Execution_Reports/API_Reports/Extent_API.html");
 			extentAPI = new ExtentReports();
 			extentAPI.attachReporter(htmlReporterAPI);
-			extentAPI.setSystemInfo("Host Name", "Gypsee");
+			extentAPI.setSystemInfo("Host Name", "XNotify");
 			extentAPI.setSystemInfo("Environment", "Stage");
 			extentAPI.setSystemInfo("User Name", "Vinoth");
 			System.out.println();
 			htmlReporterAPI.config().setDocumentTitle("Gypsee API Report");
 			// Name of the report
-			htmlReporterAPI.config().setReportName("Gypsee");
+			htmlReporterAPI.config().setReportName("XNotify");
 
 			// Dark Theme
 			htmlReporterAPI.config().setTheme(Theme.DARK);
@@ -233,12 +232,9 @@ public class ReportManager {
 
 	public static ExtentTest getCurrentAPITest() {
 		return testMapAPI.get(Thread.currentThread().getId());
-
 	}
-	 
 
 	public static void endAPIReport() {
-
 		extentAPI.flush();
 	}
 

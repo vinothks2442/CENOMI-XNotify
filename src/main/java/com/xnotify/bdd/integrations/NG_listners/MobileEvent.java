@@ -1,4 +1,4 @@
-package com.XNotify.bdd.integrations.NG_listners;
+package com.xnotify.bdd.integrations.NG_listners;
 
 import java.io.IOException;
 
@@ -10,12 +10,12 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeTest;
 
-import com.XNotify.bdd.ccl.MobileActions;
-import com.XNotify.bdd.integrations.common_utils.ConfigReader;
-import com.XNotify.bdd.integrations.common_utils.DriverFactory;
-import com.XNotify.bdd.integrations.common_utils.MobileUtil;
-import com.XNotify.bdd.integrations.common_utils.VideoRecord;
-import com.XNotify.bdd.integrations.report_utils.ReportManager;
+import com.xnotify.bdd.ccl.MobileActions;
+import com.xnotify.bdd.integrations.common_utils.ConfigReader;
+import com.xnotify.bdd.integrations.common_utils.DriverFactory;
+import com.xnotify.bdd.integrations.common_utils.MobileUtil;
+import com.xnotify.bdd.integrations.common_utils.VideoRecord;
+import com.xnotify.bdd.integrations.report_utils.ReportManager;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -54,8 +54,9 @@ public class MobileEvent implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult iTestResult) {
-		//System.out.println("Test Success: " + iTestResult.getMethod().getMethodName());
-		//ReportManager.logPass(iTestResult.getThrowable().getMessage());
+		// System.out.println("Test Success: " +
+		// iTestResult.getMethod().getMethodName());
+		// ReportManager.logPass(iTestResult.getThrowable().getMessage());
 		ReportManager.endCurrentTest();
 
 		// driverFactory.getMobileDriver().close();
@@ -70,20 +71,20 @@ public class MobileEvent implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult iTestResult) {
-		//System.out.println("Test Fail: " + iTestResult.getMethod().getMethodName());
+		// System.out.println("Test Fail: " + iTestResult.getMethod().getMethodName());
 		try {
 			ReportManager.logMobileScreenshot();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		ReportManager.logFail(iTestResult.getThrowable().getMessage());
-		
+
 		try {
 			VideoRecord.stopRecord();
-//			ReportManager.endCurrentTest();
-			
+			// ReportManager.endCurrentTest();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

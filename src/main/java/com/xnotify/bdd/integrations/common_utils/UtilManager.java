@@ -1,6 +1,4 @@
-package com.XNotify.bdd.integrations.common_utils;
-
-
+package com.xnotify.bdd.integrations.common_utils;
 
 public class UtilManager {
 
@@ -17,7 +15,7 @@ public class UtilManager {
         return utilMan;
     }
 
-    public ExcelUtils getExcelUtils(){
+    public ExcelUtils getExcelUtils() {
         return new ExcelUtils();
     }
 }

@@ -1,4 +1,4 @@
-package com.XNotify.bdd.integrations.NG_listners;
+package com.xnotify.bdd.integrations.NG_listners;
 
 import java.io.FileWriter;
 
@@ -25,16 +25,16 @@ import org.testng.ITestNGMethod;
 import org.testng.TestListenerAdapter;
 import org.testng.xml.XmlSuite;
 
-import com.XNotify.bdd.integrations.common_utils.BrowserFactory;
-import com.XNotify.bdd.integrations.common_utils.DriverFactory;
-import com.XNotify.bdd.integrations.report_utils.ReportManager;
+import com.xnotify.bdd.integrations.common_utils.BrowserFactory;
+import com.xnotify.bdd.integrations.common_utils.DriverFactory;
+import com.xnotify.bdd.integrations.report_utils.ReportManager;
 import com.opencsv.CSVWriter;
 
 public class SuiteEvent extends TestListenerAdapter implements ISuiteListener, IExecutionListener, IReporter {
 	CSVWriter writer;
 	public List<String[]> data = new ArrayList<String[]>();
 
-	public static String str_Execution_TYPE = System.getProperty("execType");//"Mobile_UI";//
+	public static String str_Execution_TYPE = System.getProperty("execType");// "Mobile_UI";//
 	public static String str_browser; // for the report generation
 	public static String str_platform;// for the report generation
 

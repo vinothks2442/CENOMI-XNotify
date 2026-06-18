@@ -1,4 +1,4 @@
-package com.XNotify.bdd.enums;
+package com.xnotify.bdd.enums;
 
 public enum EnvType {
 
@@ -6,7 +6,5 @@ public enum EnvType {
 	STAGE,
 	INT,
 	QA,
-	
-	
-}
 
+}
